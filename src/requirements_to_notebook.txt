@@ -338,7 +338,7 @@ spyder-kernels @ file:///croot/spyder-kernels_1691599531749/work
 SQLAlchemy @ file:///croot/sqlalchemy_1705089115293/work
 SQLAlchemy-Utils==0.41.2
 stack-data @ file:///opt/conda/conda-bld/stack_data_1646927590127/work
-starlette==0.37.2
+starlette==0.40.0
 statsmodels @ file:///croot/statsmodels_1689937266057/work
 streamlit @ file:///croot/streamlit_1706200479775/work
 sympy @ file:///croot/sympy_1701397643339/work
