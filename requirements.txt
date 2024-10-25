@@ -1,7 +1,7 @@
 aiofiles==24.1.0
 Flask==1.1.2
 Flask_AutoIndex==0.6.6
-Jinja2==2.11.2
+Jinja2==3.1.4
 keras==2.13.1
 matplotlib==3.4.3
 numpy==1.24.3
