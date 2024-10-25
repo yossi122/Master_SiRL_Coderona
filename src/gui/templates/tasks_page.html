@@ -1,0 +1,466 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/bootstrap.min.css">
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav> 
+                        <ul class="pagination pagination-lg justify-content-center pt-5">
+                            <li class="page-item"><a class="page-link" href="/add_task_page">Add Task</a></li>
+                            <li class="page-item active"><a class="page-link" href="/tasks_page">Tasks</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="row bg-dark text-white text-center">
+                <div class="col-12">
+                    <div class="jumbotron bg-dark text-white jumbotron-fluid">
+                        <h1 class="display-4 text-center">Current tasks</h1>
+                        <div class="list-group bg-light text-dark">
+                            {% for task in tasks %}
+                                <div class="list-group-item">
+                                    <div class="d-flex flex-row justify-content-between">
+                                        <h3>{{ task['task_data']['name'] }}</h3>
+                                        <div>
+                                            {% set vars = {'found': False, 'key': 'created_at'} %}
+                                            {% set possible_keys = ['finished_at', 'started_at', 'created_at'] %}
+                                            {% for possible_key in possible_keys if not vars['found'] %}
+                                                {% if possible_key in task %}
+                                                    {% if vars.update({'key': possible_key}) %}{% endif %}
+                                                    {% if vars.update({'found': True}) %}{% endif %}
+                                                {% endif %}
+                                            {% endfor %}
+                                            {% set t = datetime.fromtimestamp(task[vars['key']]) %}
+                                            <span>
+                                                <strong>{{ vars['key'].replace('_', ' ') | title }}:</strong> 
+                                                {{ t.strftime('%c') }}
+                                            </span>
+                                        </div>
+                                        <div>
+                                            {% if task['status'] == TaskStatus.CREATED %}
+                                                <strong class="text-secondary">Waiting</strong>
+                                            {% elif task['status'] == TaskStatus.STARTED %}
+                                                <strong class="text-primary">Running</strong>
+                                            {% elif task['status'] == TaskStatus.FINISHED %}
+                                                <strong class="text-success">Ready</strong>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    {% if task['status'] == TaskStatus.FINISHED %}
+                                        <div class="d-flex flex-row justify-content-center">
+                                            <button type="button" class="btn btn-primary mr-5"
+                                            onclick="choose_{{ task['task_data']['name'] }}()">
+                                                Analyze
+                                            </button>
+
+                                            <button type="button" class="btn btn-danger"
+                                            onclick="delete_task('{{ task['task_data']['name'] }}')">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="analyze_section" hidden>
+                <div class="row bg-light text-dark text-center">
+                    <div class="col-12">
+                        <div class="jumbotron bg-light text-dark jumbotron-fluid">
+                            <h1 class="display-4 text-center" id="task_name"></h1>
+                            <h1 class="text-center" id="pop"></h1>
+                            <div class="row p-5 justify-content-center" id="interventions"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row bg-dark text-white text-center">
+                    <div class="col-12">
+                        <div class="jumbotron bg-dark text-white jumbotron-fluid">
+                            <h1 class="display-4 text-center">Plot Graph</h1>
+                            <h1 class="text-center justify-content-center">Age groups</h1>
+                            <div class="row" id="age_groups"></div>
+                            <h1 class="text-center">Disease State Groups</h1>
+                            <div class="row" id="disease_states_groups"></div>
+                            <div class="row text-center justify-content-center">
+                                <button type="button" class="btn btn-lg btn-primary"onclick="plot_graph()">
+                                    Plot
+                                </button>
+                            </div>
+                            <div class="mt-5" id="graph_view" hidden>
+                                <div class="row text-center justify-content-center">
+                                    <img id="tmp_graph_img" class="img-fluid">
+                                </div>
+                                <div class="row">
+                                    <div class="col-4 offset-4">
+                                        <div class="mt-5 input-group">
+                                            <input id="graph_name" type="text" class="form-control"
+                                            placeholder="Graph name"/>
+                                            <div class="input-group-append">
+                                                <button type="button" class="btn btn-outline-primary"
+                                                onclick="save_graph()">
+                                                    Save Graph
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row bg-light text-dark text-center">
+                    <div class="col-12">
+                        <h1 class="display-3 text-center">Saved Graphs</h1>
+                        <div class="jumbotron bg-light text-dark jumbotron-fluid">
+                            <div class="col-9 offset-1">
+                                <div class="d-flex justify-content-between">
+                                    <div class="list-group" id="graph_list"></div>
+                                    <img id="saved_graph_img" class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+<script type="text/javascript">
+    let current_task = undefined;
+
+    {% for task in tasks %}
+        {% set task_name = task['task_data']['name'] %}
+        function choose_{{ task_name }}() {
+            current_task = "{{ task_name }}";
+            document.getElementById('analyze_section').removeAttribute('hidden');
+            document.getElementById('task_name').textContent = '{{ task_name }}';
+            document.getElementById('pop').textContent = 'Population: {{ task['task_data']['population'] }}';
+
+            let inters = document.getElementById('interventions');
+            inters.textContent = '';
+
+            let card = undefined;
+            let card_body = undefined;
+            let card_title = undefined;
+            let title_text = undefined;
+            let txt = undefined;
+            let text = undefined;
+
+            {% for inter in task['task_data']['interventions'] %}
+                col = document.createElement('div');
+                col.className = 'col-4';
+                inters.appendChild(col);
+
+                card = document.createElement('div');
+                card.className = 'card text-dark';
+                col.appendChild(card);
+
+                card_body = document.createElement('div');
+                card_body.className = 'card-body';
+                card.appendChild(card_body);
+
+                card_title = document.createElement('h3');
+                card_title.className = 'card-title';
+                card_body.appendChild(card_title);
+
+                title_text = document.createTextNode('{{ intervention_title(inter['name']) }}');
+                card_title.appendChild(title_text);
+                
+                {% for param, value in inter['params'].items() %}
+                    txt = document.createElement('h5');
+                    card_body.appendChild(txt)
+
+                    text = document.createTextNode('{{ param }}: {{ value }}');
+                    txt.appendChild(text);
+                {% endfor %}
+            {% endfor %}
+            load_default_graph_data();
+            load_saved_graphs();
+        }
+    {% endfor %}
+
+    function delete_task(name) {
+        fetch('/delete_task/' + name).then(function(response) {
+            if (response.ok) {
+                window.location.reload();
+            } else {
+                alert('Could not delete task');
+            }
+        });
+    }
+
+    function add_new_age_group_input(from, to) {
+        let div = document.getElementById('age_groups');
+
+        let col = document.createElement('div');
+        col.className = 'col-4 age-group';
+        let last_elem = div.children[div.children.length - 1];
+        div.insertBefore(col, last_elem);
+
+        let card = document.createElement('div');
+        card.className = 'card mb-5 text-dark';
+        col.appendChild(card);
+
+        let card_body = document.createElement('div');
+        card_body.className = 'card-body';
+        card.appendChild(card_body);
+
+        let from_inp = document.createElement('input');
+        from_inp.type = 'text';
+        from_inp.className = 'form-control age-group-from';
+        from_inp.placeholder = 'From';
+        if (typeof from == 'number') {
+            from_inp.value = from;
+        }
+        card_body.appendChild(from_inp);
+
+        let to_txt = document.createElement('h3')
+        to_txt.appendChild(document.createTextNode('To'));
+        card_body.appendChild(to_txt);
+
+        let to_inp = document.createElement('input');
+        to_inp.type = 'text';
+        to_inp.className = 'form-control age-group-to';
+        to_inp.placeholder = 'To';
+        if (typeof to == 'number') {
+            to_inp.value = to;
+        }
+        card_body.appendChild(to_inp);
+        
+        let remove_btn = document.createElement('button');
+        remove_btn.type = 'button';
+        remove_btn.className = 'btn btn-danger mt-2';
+        remove_btn.appendChild(document.createTextNode('Remove'));
+        remove_btn.addEventListener('click', function() {
+            let to_remove = this;
+            while (true) {
+                let found = false;
+                to_remove.classList.forEach(function(cls) {
+                    if (cls == 'age-group') {
+                        found = true;
+                    }
+                });
+                if (found) {
+                    break;
+                }
+
+                to_remove = to_remove.parentElement;
+                if (to_remove == null) {
+                    alert('Could not find relevant age group to remove');
+                    return;
+                }
+            }
+            to_remove.remove();
+        });
+        card_body.appendChild(remove_btn);
+    }
+
+    function add_new_disease_states_group_input(name, selected) {
+        let div = document.getElementById('disease_states_groups');
+
+        let col = document.createElement('div');
+        col.className = 'col-4 disease-states-group';
+        let last_elem = div.children[div.children.length - 1];
+        div.insertBefore(col, last_elem);
+
+        let card = document.createElement('div');
+        card.className = 'card mb-5 text-dark';
+        col.appendChild(card);
+
+        let card_title = document.createElement('input');
+        card_title.className = 'card-title form-control disease-states-group-name';
+        card_title.placeholder = 'Group Name';
+        if (typeof name == 'string') {
+            card_title.value = name;
+        }
+        card.appendChild(card_title);
+
+        let card_body = document.createElement('div');
+        card_body.className = 'card-body';
+        card.appendChild(card_body);
+
+        let select = document.createElement('select');
+        let mult = document.createAttribute('multiple');
+        select.setAttributeNode(mult);
+        select.className = 'form-control disease-states-group-select'
+        select.size = 7;
+        card_body.appendChild(select);
+
+        let option = undefined;
+        {% for state in DiseaseState %}
+            option = document.createElement('option');
+            option.value = {{ state.value }};
+            option.appendChild(document.createTextNode('{{ state.name }}'));
+
+            if (Array.isArray(selected) && selected.includes({{ state.value }})) {
+                let selected_attr = document.createAttribute('selected');
+                option.setAttributeNode(selected_attr);
+            }
+            select.appendChild(option);
+        {% endfor %}
+
+        let remove_btn = document.createElement('button');
+        remove_btn.type = 'button';
+        remove_btn.className = 'btn btn-danger mt-2';
+        remove_btn.appendChild(document.createTextNode('Remove'));
+        remove_btn.addEventListener('click', function() {
+            let to_remove = this;
+            while (true) {
+                console.log(to_remove);
+                let found = false;
+                to_remove.classList.forEach(function(cls) {
+                    if (cls == 'disease-states-group') {
+                        found = true;
+                    }
+                });
+                if (found) {
+                    break;
+                }
+
+                to_remove = to_remove.parentElement;
+                if (to_remove == null) {
+                    alert('Could not find relevant disease states group to remove');
+                    return;
+                }
+            }
+            to_remove.remove();
+        });
+        card_body.appendChild(remove_btn);
+    }
+
+    function add_plus_button(div, onclick) {
+        let col = document.createElement('div');
+        col.className = 'col-4';
+        div.appendChild(col);
+
+        let card = document.createElement('div');
+        card.className = 'card mb-5 text-dark';
+        col.appendChild(card);
+
+        let card_body = document.createElement('div');
+        card_body.className = 'card-body';
+        card.appendChild(card_body);
+
+        let add_btn = document.createElement('button');
+        add_btn.type = 'button';
+        add_btn.className = 'btn btn-primary btn-lg';
+        add_btn.appendChild(document.createTextNode('+'));
+        add_btn.addEventListener('click', onclick);
+        card_body.appendChild(add_btn);
+    }
+
+    function load_default_graph_data() {
+        let age_groups_div = document.getElementById('age_groups');
+        age_groups_div.textContent = '';
+
+        add_plus_button(age_groups_div, add_new_age_group_input);
+
+
+        {% for from, to in DEFAULT_AGE_GROUPS %}
+            add_new_age_group_input({{ from }}, {{ to }});
+        {% endfor %}
+
+        let disease_states_groups_div = document.getElementById('disease_states_groups');
+        disease_states_groups_div.textContent = '';
+        add_plus_button(disease_states_groups_div, add_new_disease_states_group_input);
+
+        {% for name, states in DEFAULT_DISEASE_STATES_GROUPS.items() %}
+            {% set state_vals = [] %}
+            {% for s in states %}
+                {% if state_vals.append(s.value) %}{% endif %}
+            {% endfor %}
+            add_new_disease_states_group_input("{{ name }}", {{ state_vals }});
+        {% endfor %}
+    }
+
+    function plot_graph() {
+        let age_groups = [];
+        Array.from(document.getElementsByClassName('age-group')).forEach(function(group) {
+            let from = parseInt(group.getElementsByClassName('age-group-from')[0].value);
+            let to = parseInt(group.getElementsByClassName('age-group-to')[0].value);
+            age_groups.push([from, to]);
+        });
+        
+        let disease_states_groups = {};
+        Array.from(document.getElementsByClassName('disease-states-group')).forEach(function(group) {
+            let name = group.getElementsByClassName('disease-states-group-name')[0].value;
+
+            let selected = [];
+            let select = group.getElementsByClassName('disease-states-group-select')[0];
+            Array.from(select.children).forEach(function(option) {
+                if (option.selected) {
+                    selected.push(option.value);
+                }
+            });
+            disease_states_groups[name] = selected;
+        });
+
+        fetch('/plot_graph/' + current_task, {
+            method: 'post',
+            body: JSON.stringify({age_groups, disease_states_groups})
+        }).then(function(response) {
+            if (response.ok) {
+                document.getElementById('graph_view').removeAttribute('hidden');
+                img = '/tasks/' + current_task + '/tmp.svg?' + new Date().getTime();
+                document.getElementById('tmp_graph_img').src = img;
+            } else {
+                response.text().then(function(txt) {
+                    alert('Could not create graph');
+                });
+            }
+        });
+    }
+
+    function save_graph() {
+        let graph_name = document.getElementById('graph_name').value;
+        fetch('/save_graph/' + current_task + '/' + graph_name).then(function(response) {
+            if (!response.ok) {
+                alert('Could not save graph!');
+            } else {
+                add_saved_graph_option(graph_name);
+            }
+        });
+    }
+
+    function add_saved_graph_option(name) {
+        let div = document.getElementById('graph_list');
+        
+        let btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'list-group-item list-group-item-action';
+        btn.addEventListener('click', function() {
+            let img_src = '/tasks/' + current_task + '/' + name + '.svg?' + new Date().getTime();
+            document.getElementById('saved_graph_img').src = img_src;
+        });
+        btn.appendChild(document.createTextNode(name));
+        div.appendChild(btn);
+    }
+
+    function load_saved_graphs() {
+        let div = document.getElementById('graph_list');
+        div.textContent = '';
+        fetch('/graphs/' + current_task).then(function(response) {
+            if (response.ok) {
+                response.json().then(function(j) {
+                    j.forEach(function(name) {
+                        add_saved_graph_option(name);
+                    });
+                });
+            }
+        });
+    }
+</script>
+
+<style>
+    li.page-item.active a.page-link {
+        background-color: #343a40;
+        color: #007bff;
+    }
+</style>

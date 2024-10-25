@@ -1,0 +1,16 @@
+2024-06-14 10:14:08,324 - INFO - PyDB.wandb_routine starting
+2024-06-14 10:14:18,763 - INFO - PyDB.main starting
+2024-06-14 10:14:18,784 - INFO - Runner.__init__ starting
+2024-06-14 10:14:18,787 - INFO - Runner.get_compliance starting
+2024-06-14 10:14:18,789 - INFO - EpidemicStats.__init__ starting
+2024-06-14 10:14:18,816 - INFO - AgentLSTM.__init__ starting
+2024-06-14 10:14:19,037 - INFO - AgentLSTM.set_model starting
+2024-06-14 10:14:19,713 - INFO - Generating city 'holon'...
+2024-06-14 10:14:43,381 - INFO - Runner.population_init starting
+2024-06-14 10:15:55,137 - INFO - EpidemicStats.get_economic_index starting
+2024-06-14 10:15:55,138 - INFO - Starting simulation reinforcement_Holon,reality1,inf=700,immune=0.8
+, imm_per_day=150,imm_order=ASCENDING
+,imm_comp=1
+, comp=0.7,ci_delay=4,hi_delay=4
+, imm_src=BY_NEIGHBORHOOD, min_age=18
+, min_inf_age=0

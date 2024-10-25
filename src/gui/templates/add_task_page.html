@@ -1,0 +1,225 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/bootstrap.min.css">
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav> 
+                        <ul class="pagination pagination-lg justify-content-center pt-5">
+                            <li class="page-item active"><a class="page-link" href="/add_task_page">Add Task</a></li>
+                            <li class="page-item"><a class="page-link" href="/tasks_page">Tasks</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="row bg-dark text-white text-center">
+                <div class="col-12">
+                    <div class="jumbotron bg-dark text-white jumbotron-fluid">
+                        <h1 class="display-4 text-center">Step 1: Select your population</h1>
+                        <div class="col-8 offset-2">
+                            <select class="form-control" id="pop_select">
+                                <option selected>{{ population_names[0] | title }}</option>
+                                {% for pop in population_names[1:] %}
+                                    <option>{{ pop | title }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row bg-light text-dark text-center">
+                <div class="col-12">
+                    <div class="jumbotron bg-light text-dark jumbotron-fluid">
+                        <h1 class="display-4 text-center">Step 2: Add interventions</h1>
+                        <div class="row">
+                        {% for inter in interventions %}
+                            <div class="col-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h3 class="card-title">{{ intervention_title(inter) }}</h3>
+                                        {% for param_name, param_type in intervention_params(inter).items() %}
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">{{ param_name }}</span>
+                                                </div>
+                                                <input
+                                                    type="text" class="form-control"
+                                                    placeholder="{{ param_type.__name__ }}"
+                                                    id="{{ inter.__name__ + '_' + param_name }}"
+                                                />
+                                            </div>
+                                        {% endfor %}
+                                        <button type="button" class="btn btn-secondary"
+                                            onclick="add_{{ inter.__name__ }}()"
+                                        >
+                                            Add
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row bg-dark text-white">
+                <div class="col-12">
+                    <div class="jumbotron bg-dark text-white jumbotron-fluid">
+                        <h1 class="display-4 text-center">Step 3: Create task</h1>
+                        <h1 class="text-center">Population: <span id="pop_chosen"></span></h1>
+                        <div class="row p-5" id="inter_chosen"></div>
+                        <div class="row">
+                            <div class="col-6 offset-3">
+                                <div class="input-group input-group-lg">
+                                    <input type="text" class="form-control" id="name_input"
+                                        placeholder="Task name" autocomplete="off"
+                                    />
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-outline-primary" onclick="add_task()">
+                                            Add Task
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+<script type="text/javascript">
+    let current_interventions = [];
+
+    let titles = {};
+    {% for inter in interventions %}
+        titles.{{ inter.__name__ }} = '{{ intervention_title(inter) }}';
+    {% endfor %}
+
+    // TODO: Check if this actually works when we have more than one population.
+    let pop_select_input = document.getElementById('pop_select');
+    pop_select_input.addEventListener('select', function() {
+        refresh_chosen_pop();
+    });
+
+
+    {% for inter in interventions %}
+        function add_{{ inter.__name__ }}() {
+            params = {};
+            let input = undefined;
+            let value = undefined;
+            {% for param, ptype in intervention_params(inter).items() %}
+                input = document.getElementById('{{ inter.__name__ + '_' + param }}');
+                value = input.value;
+                input.value = '';
+                {% if ptype == int %}
+                    value = parseInt(value);
+                {% elif ptype == float %}
+                    value = parseFloat(value);
+                {% endif %}
+                params.{{ param }} = value;
+            {% endfor %}
+            current_interventions.push({name: "{{ inter.__name__ }}", params});
+            refresh_chosen_inter();
+        }
+    {% endfor %}
+
+    function refresh_chosen_pop() {
+        let input = document.getElementById('pop_select').value;
+        document.getElementById('pop_chosen').textContent = input;
+    }
+
+    function refresh_chosen_inter() {
+        let div = document.getElementById('inter_chosen');
+        div.textContent = '';
+
+        current_interventions.forEach(function(inter) {
+            let col = document.createElement('div');
+            col.className = 'col-4';
+            div.appendChild(col);
+
+            let card = document.createElement('div');
+            card.className = 'card text-dark';
+            col.appendChild(card);
+
+            let card_body = document.createElement('div');
+            card_body.className = 'card-body';
+            card.appendChild(card_body);
+
+            let card_title = document.createElement('h3');
+            card_title.className = 'card-title';
+            card_body.appendChild(card_title);
+
+            let title_text = document.createTextNode(titles[inter.name]);
+            card_title.appendChild(title_text);
+
+            let parameters = inter.params
+
+            Object.keys(parameters).forEach(function(param) {
+                let txt = document.createElement('h5');
+                card_body.appendChild(txt)
+
+                let text = document.createTextNode(param + ': ' + parameters[param]);
+                txt.appendChild(text);
+            });
+
+            let remove_btn = document.createElement('button');
+            remove_btn.className = 'button btn-danger';
+            remove_btn.addEventListener('click', function() {
+                let found = false;
+                current_interventions = current_interventions.filter(function(elem) {
+                    if (found) {
+                        return true;
+                    } else if (elem == inter) {
+                        found = true;
+                        return false;
+                    } else {
+                        return true;
+                    }
+                });
+                refresh_chosen_inter();
+            });
+            card_body.appendChild(remove_btn);
+
+            let remove_txt = document.createTextNode('Remove');
+            remove_btn.appendChild(remove_txt);
+        });
+    }
+
+    function add_task() {
+        let name = document.getElementById('name_input').value;
+        let population = document.getElementById('pop_select').value;
+
+        fetch('add_task', {
+            method: 'post',
+            body: JSON.stringify({
+                name, population,
+                interventions: current_interventions
+            })
+        }).then(function(response) {
+            if (response.ok) {
+                window.location.href = '/tasks_page';
+            } else if (response.status == 404) {
+                response.text().then(function(txt) {
+                    alert(txt);
+                });
+            } else {
+                alert('Task failed to create');
+            }
+        });
+    }
+
+    refresh_chosen_pop();
+</script>
+
+<style>
+    li.page-item.active a.page-link {
+        background-color: #343a40;
+        color: #007bff;
+    }
+</style>

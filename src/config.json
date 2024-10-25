@@ -1,0 +1,179 @@
+{
+    "CitiesFilePath": "../../../Assets/CitiesDataChickago.xls",
+    "ParamsFilePath": "../Assets/params.json",
+    "CPU_percent": "0.9",
+    "ExtensionsNamelst": [
+        "ImmuneByAgeExtension"
+    ],
+    "experiment_type": "DQN",
+    "experiment_mode": "train",
+    "age_stats": true,
+    "age_groups": [
+        [0,18],
+        [18, 60],
+        [60, 99]
+    ],
+    "linked_immune_compliance": [
+        {
+            "target_immune_percentage": 0.8,
+            "immune_compliance": 0.7
+        }
+    ],
+    "absolute_stats_flag": true,
+    "people_per_day": [80],
+    "vaccinate_per_day_persons": 250,
+    "vaccinate_per_day_household": 25,
+    "latency days_n": 30,
+    "intervention_duration": 25,
+    "linked_immune_age": [
+        {
+            "immune_source": "BY_NEIGHBORHOOD",
+            "min_age": 0,
+            "max_age": 99
+        }
+    ],
+    "initial_num_infected": [300],
+    "num_infected_spread": [1, 1],
+    "init_infected_equally": false,
+    "linked_city_scale": [
+        {
+
+            "city_name": "Holon",
+            "scale": 1
+        },
+        {
+          "city_name": "Bene Beraq",
+            "scale": 1
+        }
+    ],
+    "compliance": [0.8],
+    "compliance_spread": [0.2, 0.1],
+    "order": ["DESCENDING"],
+    "ci_delay": [4],
+    "hi_delay": [4],
+    "minimum_infectiousness_age": [0],
+    "symptomatic_probs_scale": [1],
+    "scenarios": {
+        "vaccinations_scenario_general": "vaccinations_scenario_general",
+        "Empty_scenario": "Empty_scenario",
+        "reality1": "scenario_reality1",
+        "paper_1": "paper_1"
+    },
+    "train_epochs": 250,
+    "stop_condition": {
+        "rt_flag": false,
+        "rt": 0.75,
+        "infected_population": 0.01,
+        "vaccinated_population": 0.01,
+        "days_bound": 130
+    },
+    "wandb": {
+        "usage_flag": true,
+        "mode": "online",
+        "experiment_name": "coderona_dqn",
+        "team_name": "Epidemiology_DQN_Control",
+        "summing_in": {
+            "flag": true,
+            "stat_list": [
+                "infected_population",
+                "vaccinated_population",
+                "susceptible_population",
+                "recovered_population",
+                "exposed_population",
+                "capable_population",
+                "hospitalized_population",
+                "deceased_population"
+            ]
+        },
+        "api_key": "98ed8d9f59adb6afeffd7467e8c68ce94b36355a",
+        "log_vars": [
+            "infected_population",
+            "vaccinated_population",
+            "rt",
+            "r0",
+            "r_smoothed",
+            "r_estimated",
+            "reward",
+            "economic_index",
+            "action",
+            "epsilon",
+            "susceptible_population",
+            "recovered_population",
+            "exposed_population",
+            "hospitalized_population",
+            "deceased_population",
+            "loss_",
+            "compliance",
+            "mean_reward",
+            "cumulative_reward",
+            "init_infected",
+            "capable_population",
+            "level_2.0",
+            "level_1.5",
+            "level_1.25",
+            "level_1.0",
+            "periods",
+            "action_max_reward",
+            "action_select_counter",
+            "memory_access"
+        ]
+    },
+    "dqn_agent": {
+        "mode": "train",
+        "checkpoint_date": "2024_10_23_16_19_04",
+        "q_equation": "classical",
+        "force_exploring_flag": false,
+        "train_params": {
+            "reward_type": {
+                "parametrized": false,
+                "penalty": true
+            },
+            "actions": {
+                "start_key": 0,
+                "end_key": 10
+            },
+            "epsilon": 1.0 ,
+            "learning_rate": 0.01,
+            "batch_size": 32,
+            "actions_weights": {
+                "0": 1,
+                "1": [0.32, 0.85],
+                "2": [0.85, 0.85],
+                "3": [0.9, 0.85],
+                "4": 1,
+                "5": [1, 0.85],
+                "6": [0.52, 0.85],
+                "7": [0.95, 0.85],
+                "8": 1,
+                "9": 0.85,
+                "10": 0.32
+            },
+            "discretization_bins_num": 1,
+            "hyper_params": {
+                "constant_flag": true,
+                "delta": 164,
+                "alpha": 110,
+                "beta": 368,
+                "gamma": 552,
+                "lambda": 1.5,
+                "mu": 7,
+                "ro": 1,
+                "pi": 6
+            },
+            "actions_window": 5,
+            "penalty_reward_params": {
+                "rt>2.0": -2,
+                "1.5 < rt <= 2.0": -1,
+                "1.25 <= rt <= 1.5": 2,
+                "rt < 1.25": 4,
+                "rt < 1.0": 6,
+                "infect_rate": 0.01,
+                "ratio > infect_rate": 250,
+                "ratio < infect_rate": 50
+            }
+        },
+        "test_params": {
+            "use_latest": true
+        }
+    }
+}

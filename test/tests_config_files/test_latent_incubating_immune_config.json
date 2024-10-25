@@ -1,0 +1,6 @@
+{
+  "CitiesFilePath": "../../../Assets/CitiesDataChickago.xls",
+  "ParamsFilePath": "test_latent_incubating_immune_params.json",
+  "CPU_percent": "0.9",
+  "ExtensionsNamelst": []
+}

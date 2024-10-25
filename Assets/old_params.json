@@ -1,0 +1,151 @@
+{
+    "person": {
+        "base_infectiousness": 0.1,
+        "individual_infectiousness_gamma_shape": 0.25,
+        "individual_infectiousness_gamma_scale": 4
+    },
+    "population": {
+        "R0_percent": 0.0,
+        "household_avg_daily_contacts": 3.316470479739545,
+        "community_avg_daily_contacts": 2.5,
+        "city_avg_daily_contacts": 0.59,
+        "community_approx_size": 3000
+    },
+    "disease_parameters": {
+        "infectiousness_per_stage": {
+            "incubating_post_latent" : 0.5,
+            "asymptomatic": 0.5,
+            "symptomatic" : 1.0,
+            "critical": 1.0
+        },
+        "ages_do_not_change":                           [    0,    10,    20,    30,    40,    50,    60,    70,    80],
+        "symptomatic_given_infected_per_age":           [ 0.15,   0.5,   0.8,  0.85,   0.7,   0.7,   0.7,   0.6,   0.5],
+        "hospitalization_given_symptomatic_per_age":    [0.0, 0.008,  0.008, 0.01, 0.019, 0.054, 0.151, 0.333, 0.618],
+        "critical_given_hospitalized_per_age":          [ 0.05,  0.05,  0.05,  0.05, 0.063, 0.122, 0.274, 0.432, 0.709],
+        "deceased_given_critical_per_age":              [  0.4,   0.4,   0.4,   0.4,   0.4,   0.4,   0.4,   0.5,   0.5],
+        "latent_period_gamma_params": {
+            "a": 4,
+            "scale": 1.333333333,
+            "max_val": 14
+        },
+        "infectious_before_symptomatic_gamma_params": {
+            "a": 4,
+            "scale": 0.375,
+            "max_val": 8
+        },
+        "infectious_before_immune_gamma_params": {
+            "a":  4,
+            "scale": 1.25,
+            "max_val": 20
+        },
+        "symptomatic_before_critical_gamma_params": {
+            "a":  7,
+            "scale": 1.0,
+            "max_val": 14
+        },
+        "symptomatic_before_immune_gamma_params": {
+            "a":  4,
+            "scale": 0.875,
+            "max_val": 20
+        },
+        "critical_before_deceased_gamma_params": {
+            "a":  10,
+            "scale": 1.0,
+            "max_val": 45
+        },
+        "critical_before_immune_gamma_params": {
+            "a":  8,
+            "scale": 1,
+            "max_val": 45
+        }
+    },
+    "city_environments": [
+        {
+            "env_name" : "kindergarten",
+            "env_type" : "School",
+            "age_range": [3, 5],
+            "father_name": "neighborhood",
+            "is_per_age": true,
+            "size": 20,
+            "average_daily_contacts": 4.648163265306122
+        },
+        {
+            "env_name" : "elementary_school",
+            "env_type" : "School",
+            "age_range": [6, 11],
+            "father_name": "neighborhood",
+            "is_per_age": true,
+            "size": 30,
+            "average_daily_contacts": 4.648163265306122
+        },
+        {
+            "env_name" : "middle_school",
+            "env_type" : "School",
+            "age_range": [12, 15],
+            "father_name": "neighborhood",
+            "is_per_age": true,
+            "size": 30,
+            "average_daily_contacts": 8.124552612741589
+        },
+        {
+            "env_name" : "high_school",
+            "env_type" : "School",
+            "age_range": [16, 18],
+            "father_name": "city",
+            "is_per_age": true,
+            "size": 30,
+            "average_daily_contacts": 8.124552612741589
+        },
+        {
+            "env_name": "workplace",
+            "env_type": "Workplace",
+            "age_range": [
+                19,
+                64
+            ],
+            "father_name": "city",
+            "is_per_age": false,
+            "size": 50,
+            "average_daily_contacts": 4.430241291458261
+        }
+    ],
+    "interventions_routines": {
+        "workplace_closure": {
+            "workplace": 0,
+            "other": 1.25
+        },
+        "quarantine": {
+            "all": 0
+        },
+        "social_distancing": {
+            "household": 1.25,
+            "workplace": 0.75,
+            "school": 1,
+            "other": 0.25
+        },
+        "household_isolation": {
+            "household": 1.25,
+            "other": 0
+        },
+        "city_curfew": {
+            "out_of_city": 0,
+            "in_city": {
+                "household": 1.5,
+                "city_community": 1.25,
+                "neighborhood_community": 1.25
+            }
+        },
+        "school_closure": {
+            "school": 0,
+            "household": 1.5,
+            "city_community": 1.25,
+            "neighborhood_community": 1.25
+        },
+        "school_isolation" : {
+            "school" : 1.75,
+            "household" : 0,
+            "city_community" : 0,
+            "neighborhood_community" : 0
+        }
+    }
+}
