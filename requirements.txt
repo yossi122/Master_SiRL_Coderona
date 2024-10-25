@@ -1,5 +1,5 @@
 aiofiles==24.1.0
-Flask==1.1.2
+Flask==2.2.5
 Flask_AutoIndex==0.6.6
 Jinja2==2.11.2
 keras==2.13.1
