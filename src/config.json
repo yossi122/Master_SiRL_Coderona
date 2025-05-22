@@ -152,7 +152,7 @@
             "hyper_params": {
                 "constant_flag": true,
                 "delta": 164,
-                "alpha": 110,
+                "alpha": 123,
                 "beta": 368,
                 "gamma": 552,
                 "lambda": 1.5,
