@@ -728,13 +728,18 @@ class AgentLSTM:
             # x = sum(env.infected_population.values())
 
         if self.rew_type == 'parametrized':
-            # PREVIOUS VERSION OF REWARD EQUATION
+            # PREVIOUS VERSION OF REWARD EQUATION (For testing only).
+            # This parametrized reward function is NOT the reward used in the actual research.
+            # I included it for internal testing and comparison purposes only.
+            # The official reward used in experiments is the penalty-based formulation defined below.
             self.reward = (self.lambda_ * env.economic_index -
                            self.mu_ * infect -
                            self.ro_ * dead +
                            self.pi_ * (sus + vac))
         elif self.rew_type == 'penalty':
             # -- PENALTY PART
+            # PENALTY REWARD VERSION
+            # This is the reward formulation I actually used in the experiments described in the study.
             rt, r0, r_smoothed, r_estimated = sim.get_rt()
 
             print(f'\t >> RT = {rt}')
