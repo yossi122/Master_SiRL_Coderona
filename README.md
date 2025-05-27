@@ -15,6 +15,7 @@ Bene Beraq, a younger and denser city, where nearly half the population is under
 
 Our model supports the simulation of heterogeneous populations and enables the evaluation of intervention strategies within specific demographic contexts. This stands in contrast to deterministic compartmental models, which divide the population into homogeneous compartments and assume identical behavior within each group.
 
+
 **Requirements**
 
 Install with:
@@ -90,6 +91,7 @@ Features
   9: [act.curfew()],                      # Curfew
   
   10: [act.lockdown(city_name='all')]    # Full lockdown
+  
 }
 
 **Daily economic index calculated by:**
