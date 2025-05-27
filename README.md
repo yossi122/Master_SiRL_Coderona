@@ -19,33 +19,50 @@ Our model supports the simulation of heterogeneous populations and enables the e
 
 Install with:
 
-pip install -r requirements.txt
+`pip install -r requirements.txt`
 
-Required packages:
+**Required packages:**
 
-aiofiles==24.1.0
-Flask==1.1.2
-Flask_AutoIndex==0.6.6
-Jinja2==2.11.2
-keras==2.13.1
-matplotlib==3.4.3
-numpy==1.24.3
-pandas==1.3.4
-pyfunctional==1.5.0
-pytest==6.2.4
-sanic==24.6.0
-scipy==1.4.1
-seaborn==0.11.2
-tabulate==0.9.0
-tensorflow==2.13.1
-tqdm==4.64.1
-xlrd==2.0.1
+Tune the following:
+- `aiofiles==24.1.0`
+
+- `Flask==1.1.2`
+
+- `Flask_AutoIndex==0.6.6`
+
+- `Jinja2==2.11.2`
+
+- `keras==2.13.1`
+
+- `matplotlib==3.4.3`
+
+- `numpy==1.24.3`
+
+- `pandas==1.3.4`
+
+- `pyfunctional==1.5.0`
+
+- `pytest==6.2.4`
+
+- `sanic==24.6.0`
+
+- `scipy==1.4.1`
+
+- `seaborn==0.11.2`
+
+- `tabulate==0.9.0`
+
+- `tensorflow==2.13.1`
+
+- `tqdm==4.64.1`
+
+- `xlrd==2.0.1`
 
 How to Run
 
 Make sure you’re in the project root:
 
-cd Master_SiRL_Coderona
+`cd Master_SiRL_Coderona`
 
 Train:
 
@@ -61,37 +78,37 @@ Then run:
 
 python src/_run.py --mode test --config config.json
 
+**Features**
 
-
-Features
-	•	Age-specific SEIR dynamics via individual-based simulation (includes custom Coderona-virus model)
+Age-specific SEIR dynamics via individual-based simulation (includes custom Coderona-virus model)
  
-	•	DQN agent with LSTM architecture for sequential decision making
+DQN agent with LSTM architecture for sequential decision making
  
-	•	Multiple policy interventions via self.act_dict:
+Multiple policy interventions via self.act_dict:
 
 **Interventions (Actions)**
-  0: scenarios.Empty_scenario(),          # No action
+
+  `0: scenarios.Empty_scenario()`,          # No action
   
-  1: house_interventions,                 # Household vaccination + lockdown
+  `1: house_interventions`,                 # Household vaccination + lockdown
   
-  2: global_interventions,                # General vaccination + curfew
+  `2: global_interventions`,                # General vaccination + curfew
   
-  3: upd_2_3,                             # Gen. vaccination + symptomatic isolation
+  `3: upd_2_3`,                             # Gen. vaccination + symptomatic isolation
   
-  4: [act.social_distance()],            # Social distancing
+  `4: [act.social_distance()]`,            # Social distancing
   
-  5: upd_1_5,                             # Household vac + school closure
+  `5: upd_1_5`,                             # Household vac + school closure
   
-  6: upd_1_6,                             # Household vac + workplace closure
+  `6: upd_1_6`,                             # Household vac + workplace closure
   
-  7: upd_1_7,                             # Household vac + elderly quarantine
+  `7: upd_1_7`,                             # Household vac + elderly quarantine
   
-  8: [act.household_isolation()],        # Household-level isolation
+  `8: [act.household_isolation()]`,        # Household-level isolation
   
-  9: [act.curfew()],                      # Curfew
+  `9: [act.curfew()]`,                      # Curfew
   
-  10: [act.lockdown(city_name='all')]    # Full lockdown
+  `10: [act.lockdown(city_name='all')]`    # Full lockdown
 
 
 **Daily economic index calculated by:**
