@@ -15,27 +15,6 @@ Bene Beraq, a younger and denser city, where nearly half the population is under
 
 Our model supports the simulation of heterogeneous populations and enables the evaluation of intervention strategies within specific demographic contexts. This stands in contrast to deterministic compartmental models, which divide the population into homogeneous compartments and assume identical behavior within each group.
 
-**Repository Structure**
-
-Path	Description
-src/	Main source code
-├─ simulation/	Simulation environment logic
-├─ seir/	SEIR model definitions
-├─ extensions/	Extra behavior/postprocessing modules
-├─ util/	Utility functions
-├─ logs/	Logging infra
-├─ wandb/	Experiment logs (auto-generated)
-├─ world/	Population modeling
-├─ post_processing_graphs/	Visualizations
-config.json	Core experiment configuration
-requirements.txt	Python packages
-main.py, _run.py	Script entry points
-DQN_run.sh, zip_statistics.sh	Shell utilities
-webserver.py	Optional dashboard
-rewards.jpg	Reward plot
-venv/	Local virtualenv
-updates.md	Change log
-
 **Requirements**
 
 Install with:
@@ -62,8 +41,6 @@ tensorflow==2.13.1
 tqdm==4.64.1
 xlrd==2.0.1
 
-
-
 How to Run
 
 Make sure you’re in the project root:
@@ -75,11 +52,12 @@ Train:
 python src/_run.py --mode train --config config.json
 
 Evaluate:
-	'''1.	Set in config.json:'''
+
+Set in config.json:
 
 "checkpoint_date": "YYYY_MM_DD_HH_MM_SS"
 
-	'''2.	Then run:'''
+Then run:
 
 python src/_run.py --mode test --config config.json
 
@@ -92,26 +70,36 @@ Features
 
 {
   0: scenarios.Empty_scenario(),          # No action
+  
   1: house_interventions,                 # Household vaccination + lockdown
+  
   2: global_interventions,                # General vaccination + curfew
+  
   3: upd_2_3,                             # Gen. vaccination + symptomatic isolation
+  
   4: [act.social_distance()],            # Social distancing
+  
   5: upd_1_5,                             # Household vac + school closure
+  
   6: upd_1_6,                             # Household vac + workplace closure
+  
   7: upd_1_7,                             # Household vac + elderly quarantine
+  
   8: [act.household_isolation()],        # Household-level isolation
+  
   9: [act.curfew()],                      # Curfew
+  
   10: [act.lockdown(city_name='all')]    # Full lockdown
 }
 
-	'''•	Daily economic index calculated by:'''
+**Daily economic index calculated by:**
 
 vac_decrease_coef = decrease_coef_[0]  # VPRF
 decrease_coef = decrease_coef_[1]      # PPF
 vsr = (S + V * vac_decrease_coef + R) * decrease_coef
 economic_index += delta * vsr - alpha * I - beta * H - gamma * D
 
-	'''•	Configurable population compliance levels'''
+Configurable population compliance levels
 
 
 
