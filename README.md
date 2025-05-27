@@ -1,12 +1,10 @@
-Insights from Reinforcement Learning and Individual-Based Model Simulations on Population Compliance and Policy Optimization during COVID-19
+**Insights from Reinforcement Learning and Individual-Based Model Simulations on Population Compliance and Policy Optimization during COVID-19**
 
 This repository contains the official codebase accompanying the research article:
 
 “Insights from Reinforcement Learning and Individual-Based Model Simulations on Population Compliance and Policy Optimization during COVID-19”
 
-⸻
-
-Abstract
+**Abstract**
 
 We aim to develop and evaluate a novel framework that integrates RL with existing IBMs that have been previously developed and validated for simulating the spread of COVID-19.
 Our primary objective is to assess whether an RL agent can learn adaptive, data-driven intervention policies that maximize economic outcomes while simultaneously reducing hospitalization and mortality rates.
@@ -17,9 +15,7 @@ Bene Beraq, a younger and denser city, where nearly half the population is under
 
 Our model supports the simulation of heterogeneous populations and enables the evaluation of intervention strategies within specific demographic contexts. This stands in contrast to deterministic compartmental models, which divide the population into homogeneous compartments and assume identical behavior within each group.
 
-⸻
-
-Repository Structure
+**Repository Structure**
 
 Path	Description
 src/	Main source code
@@ -40,9 +36,7 @@ rewards.jpg	Reward plot
 venv/	Local virtualenv
 updates.md	Change log
 
-⸻
-
-Requirements
+**Requirements**
 
 Install with:
 
@@ -68,7 +62,7 @@ tensorflow==2.13.1
 tqdm==4.64.1
 xlrd==2.0.1
 
-⸻
+
 
 How to Run
 
@@ -89,7 +83,7 @@ Evaluate:
 
 python src/_run.py --mode test --config config.json
 
-⸻
+
 
 Features
 	•	Age-specific SEIR dynamics via individual-based simulation (includes custom Coderona-virus model)
@@ -119,9 +113,9 @@ economic_index += delta * vsr - alpha * I - beta * H - gamma * D
 
 	•	Configurable population compliance levels
 
-⸻
 
-Training Environment
+
+**Training Environment**
 
 Training was conducted on:
 
@@ -131,15 +125,6 @@ This GPU is optimized for deep learning and large-scale individual-based simulat
 
 Note: The code may run on smaller GPUs or CPUs, but expect slower performance.
 
-⸻
-
-Reproducibility Steps
-	1.	Clone this repository
-	2.	Install requirements
-	3.	Set "checkpoint_date" in config.json
-	4.	Run training or testing as shown above
-
-⸻
 
 Citation (BibTeX)
 
@@ -150,19 +135,11 @@ Citation (BibTeX)
   url={https://github.com/yossi122/Master_SiRL_Coderona}
 }
 
-⸻
-
-Branch Protection
+**Branch Protection**
 
 The main branch is protected using GitHub’s classic branch protection rules, ensuring the reproducibility and integrity of this research.
 
-⸻
-
-⸻
-
 Optimal policy fighting covid-19 one model at a time
-
-⸻
 
 config.json
 
@@ -176,7 +153,7 @@ Tune the following:
   - `min_age`
   - `max_age`
 - `compliance`
-- `"order"`: [ASCENDING, DESCENDING, NONE]
+- `"order"`: [ASCENDING, DESCENDING]
 
 Simulation parameters
 
@@ -184,8 +161,6 @@ Tune the following:
 - `latency days_n`
 - `intervention_duration`
 - `days_bound`
-
-⸻
 
 Model Saving Process (.h5 Format)
 
@@ -213,4 +188,4 @@ In this project, the model is saved in HDF5 (.h5) format, which is widely suppor
 
 This process ensures reproducibility and cross-platform usability of the trained model.
 
-⸻
+
