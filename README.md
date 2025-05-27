@@ -65,10 +65,12 @@ python src/_run.py --mode test --config config.json
 
 Features
 	•	Age-specific SEIR dynamics via individual-based simulation (includes custom Coderona-virus model)
+ 
 	•	DQN agent with LSTM architecture for sequential decision making
+ 
 	•	Multiple policy interventions via self.act_dict:
 
-{
+**Interventions (Actions)**
   0: scenarios.Empty_scenario(),          # No action
   
   1: house_interventions,                 # Household vaccination + lockdown
@@ -90,7 +92,7 @@ Features
   9: [act.curfew()],                      # Curfew
   
   10: [act.lockdown(city_name='all')]    # Full lockdown
-}
+
 
 **Daily economic index calculated by:**
 
