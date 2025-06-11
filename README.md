@@ -1,137 +1,188 @@
-**Insights from Reinforcement Learning and Individual-Based Model Simulations on Population Compliance and Policy Optimization during COVID-19**
+Insights from Reinforcement Learning and Individual-Based Model Simulations on Population Compliance and Policy Optimization during COVID-19
 
 This repository contains the official codebase accompanying the research article:
 
 “Insights from Reinforcement Learning and Individual-Based Model Simulations on Population Compliance and Policy Optimization during COVID-19”
 
-**Abstract**
 
-We aim to develop and evaluate a novel framework that integrates RL with existing IBMs that have been previously developed and validated for simulating the spread of COVID-19.
-Our primary objective is to assess whether an RL agent can learn adaptive, data-driven intervention policies that maximize economic outcomes while simultaneously reducing hospitalization and mortality rates.
+Abstract
+
+We aim to develop and evaluate a novel framework that integrates Reinforcement Learning (RL) with existing Individual-Based Models (IBMs) that have been previously developed and validated for simulating the spread of COVID-19. Our primary objective is to assess whether an RL agent can learn adaptive, data-driven intervention policies that maximize economic outcomes while simultaneously reducing hospitalization and mortality rates.
 
 As a case study, we simulate outbreaks under the demographic conditions of two Israeli cities:
-Holon, where approximately a quarter of the population is under 18 and the average household size is 2.8; and
-Bene Beraq, a younger and denser city, where nearly half the population is under 18 and the average household size is 4.5.
 
-Our model supports the simulation of heterogeneous populations and enables the evaluation of intervention strategies within specific demographic contexts. This stands in contrast to deterministic compartmental models, which divide the population into homogeneous compartments and assume identical behavior within each group.
+	•	Holon: ~25% under 18 years old, average household size: 2.8
+ 
+	•	Bene Beraq: ~50% under 18 years old, average household size: 4.5
 
-**Requirements**
+Our model supports the simulation of heterogeneous populations and enables the evaluation of intervention strategies within specific demographic contexts. This stands in contrast to deterministic compartmental models, which assume homogeneous behavior.
 
-Install with:
+
+Requirements
+
+Install dependencies using:
 
 `pip install -r requirements.txt`
 
-**Required packages:**
+Required packages include:
 
-Tune the following:
-- `aiofiles==24.1.0`
+	•	aiofiles==24.1.0
+ 
+	•	Flask==1.1.2
+ 
+	•	Flask_AutoIndex==0.6.6
+ 
+	•	Jinja2==2.11.2
+ 
+	•	keras==2.13.1
+ 
+	•	matplotlib==3.4.3
+ 
+	•	numpy==1.24.3
+ 
+	•	pandas==1.3.4
+ 
+	•	pyfunctional==1.5.0
+ 
+	•	pytest==6.2.4
+ 
+	•	sanic==24.6.0
+ 
+	•	scipy==1.4.1
+ 
+	•	seaborn==0.11.2
+ 
+	•	tabulate==0.9.0
+ 
+	•	tensorflow==2.13.1
+ 
+	•	tqdm==4.64.1
+ 
+	•	xlrd==2.0.1
 
-- `Flask==1.1.2`
 
-- `Flask_AutoIndex==0.6.6`
 
-- `Jinja2==2.11.2`
+How to Run and Train the Model
 
-- `keras==2.13.1`
+**Step 1** – Clone the Repository
 
-- `matplotlib==3.4.3`
+Clone or download this repository to your local machine or runtime environment.
 
-- `numpy==1.24.3`
+**Step 2** – Install Dependencies
 
-- `pandas==1.3.4`
+pip install -r requirements.txt
 
-- `pyfunctional==1.5.0`
+**Step 3** – Configure Simulation Parameters
 
-- `pytest==6.2.4`
+Edit the config.json file to specify the simulation and pandemic-related parameters:
 
-- `sanic==24.6.0`
+Pandemic and Simulation Parameters:
+	•	"latency"
+ 
+	•	"days_n"
+ 
+	•	"intervention_duration"
+ 
+	•	"train_epochs" – total number of training episodes
+ 
+	•	"vaccinate_per_day_persons"
+ 
+	•	"vaccinate_per_day_household"
+ 
+	•	"initial_num_infected"
+ 
+	•	"linked_immune_age": { "min_age", "max_age" }
+ 
+	•	"compliance"
+ 
+	•	"order" – e.g., [ASCENDING, DESCENDING]
+ 
+	•	"days_bound" – maximum number of simulation days allowed per scenario
 
-- `scipy==1.4.1`
-
-- `seaborn==0.11.2`
-
-- `tabulate==0.9.0`
-
-- `tensorflow==2.13.1`
-
-- `tqdm==4.64.1`
-
-- `xlrd==2.0.1`
-
-How to Run
-
-Make sure you’re in the project root:
-
-`cd Master_SiRL_Coderona`
-
-Train:
+**Step 4** – Run Training
 
 python src/_run.py --mode train --config config.json
 
-Evaluate:
+**Step 5** – Check Output Directory
 
-Set in config.json:
+After training completes, a new folder is created under outputs/ with a timestamp in the format:
 
-"checkpoint_date": "YYYY_MM_DD_HH_MM_SS"
+YYYY_MM_DD_HH_MM_SS
 
-Then run:
+The folder contains:
+	1.	Trained model weights:
+	•	Bene_Beraq_model.weight.h5
+	•	Holon_model.weight.h5
+	2.	Training metadata:
+	•	params.json containing:
 
-python src/_run.py --mode test --config config.json
+{
+  "episode": <last_episode>,
+  "epsilon": <final_epsilon_value>,
+  "action_select_counter": {
+    "0": <count>,
+    "1": <count>,
+    ...
+    "10": <count>
+  }
+}
 
-**Features**
 
-Age-specific SEIR dynamics via individual-based simulation (includes custom Coderona-virus model)
+
+
+Continuing Training from a Checkpoint
+
+To continue training:
+	1.	Set the checkpoint_date field in config.json:
+
+"checkpoint_date": `"YYYY_MM_DD_HH_MM_SS"`
+
+	2.	Update the train_epochs field to reflect the new total:
+
+"train_epochs": previous_value + additional_episodes
+
+	3.	Re-run the training script. Training will resume from the saved checkpoint.
+
+Note: The trained model file (model.h5) is not included in this repository due to its large binary size and GitHub’s file hosting limitations. However, the model can be fully re-trained using the included training scripts and configuration files.
+
+Colab Notebooks and Statistical Analysis
+
+This repository includes three Google Colab notebooks used to generate the complete set of statistical analyses and visualizations referenced in the article:
+
+	`•	Statistical1_Analysis_SiRL_Coderona-2.ipynb`
  
-DQN agent with LSTM architecture for sequential decision making
+	`•	Statistical2_Analysis_SiRL_Coderona.ipynb`
  
-Multiple policy interventions via self.act_dict:
+	`•	Statistic_evaluation_RL.ipynb`
 
-**Interventions (Actions)**
+These notebooks contain:
+	•	Reproduction of all figures included in the published article
+	•	Descriptive and inferential statistical evaluations of simulation outcomes
+	•	Performance comparisons between demographic settings and policy interventions
 
-  `0: scenarios.Empty_scenario()`,          # No action
-  
-  `1: house_interventions`,                 # Household vaccination + lockdown
-  
-  `2: global_interventions`,                # General vaccination + curfew
-  
-  `3: upd_2_3`,                             # Gen. vaccination + symptomatic isolation
-  
-  `4: [act.social_distance()]`,            # Social distancing
-  
-  `5: upd_1_5`,                             # Household vac + school closure
-  
-  `6: upd_1_6`,                             # Household vac + workplace closure
-  
-  `7: upd_1_7`,                             # Household vac + elderly quarantine
-  
-  `8: [act.household_isolation()]`,        # Household-level isolation
-  
-  `9: [act.curfew()]`,                      # Curfew
-  
-  `10: [act.lockdown(city_name='all')]`    # Full lockdown
+Supplementary Visualizations (Not Included in the Published Article):
+	•	Additional visual summaries of policy effects over time
+	•	Detailed epidemic and economic indicators
+	•	Extended sensitivity and exploratory analysis beyond the main scope of the paper
 
-
-**Daily economic index calculated by:**
-
-vac_decrease_coef = decrease_coef_[0]  # VPRF
-decrease_coef = decrease_coef_[1]      # PPF
-vsr = (S + V * vac_decrease_coef + R) * decrease_coef
-economic_index += delta * vsr - alpha * I - beta * H - gamma * D
-
-Configurable population compliance levels
+Features
+	•	Age-specific SEIR dynamics via individual-based simulation (includes custom “Coderona-virus” model)
+	•	DQN agent with LSTM architecture for sequential decision making
+	•	Demographic-aware policy interventions via self.act_dict, including:
+	•	Social distancing
+	•	Vaccination (household/global)
+	•	Curfews, lockdowns, school/workplace closures
+	•	Daily economic index computed using model-specific parameters and health states
+	•	Adjustable compliance rates and age-specific immunity
 
 
 
-**Training Environment**
+Training Environment
 
 Training was conducted on:
+	•	NVIDIA A100 80GB PCIe GPU
 
-NVIDIA A100 80GB PCIe GPU
-
-This GPU is optimized for deep learning and large-scale individual-based simulations.
-
-Note: The code may run on smaller GPUs or CPUs, but expect slower performance.
-
+The code may run on smaller GPUs or CPUs, but performance will be significantly slower.
 
 Citation (BibTeX)
 
@@ -142,57 +193,20 @@ Citation (BibTeX)
   url={https://github.com/yossi122/Master_SiRL_Coderona}
 }
 
-**Branch Protection**
+Once published on Zenodo, replace this citation with the official DOI citation provided by Zenodo.
 
-The main branch is protected using GitHub’s classic branch protection rules, ensuring the reproducibility and integrity of this research.
 
-Optimal policy fighting covid-19 one model at a time
 
-config.json
+Branch Protection
 
-Pandemic parameters
+The main branch is protected via GitHub’s classic branch protection rules to ensure the reproducibility and integrity of the published results.
 
-Tune the following:
-- `vaccinate_per_day_persons`
-- `vaccinate_per_day_household`
-- `initial_num_infected`
-- `linked_immune_age`:
-  - `min_age`
-  - `max_age`
-- `compliance`
-- `"order"`: [ASCENDING, DESCENDING]
 
-Simulation parameters
 
-Tune the following:
-- `latency days_n`
-- `intervention_duration`
-- `days_bound`
+Tagline
 
-Model Saving Process (.h5 Format)
+Optimal policy, fighting COVID-19 — one model at a time.
 
-During the training process, after the model has been compiled and trained, it is important to save the model's architecture, weights, and training configuration to allow for reuse or further training later.
 
-In this project, the model is saved in HDF5 (.h5) format, which is widely supported by machine learning frameworks such as TensorFlow and Keras.
-
-### The saving process involves:
-
-1. **Model Training**:  
-   The model learns from the dataset using a specified optimizer, loss function, and evaluation metrics.
-
-2. **Checkpointing**:  
-   The model is saved during or after training. This includes both the model's structure and its weights.
-
-3. **Saving the Model**:  
-   Saves the following:
-   - The model architecture
-   - The learned weights (parameters)
-   - The optimizer's state (if needed)
-   - The training configuration
-
-4. **Restoring the Model**:  
-   The saved model can be loaded later for inference or continued training.
-
-This process ensures reproducibility and cross-platform usability of the trained model.
 
 
