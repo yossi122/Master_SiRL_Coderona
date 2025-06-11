@@ -1,11 +1,9 @@
-Insights from Reinforcement Learning and Individual-Based Model Simulations on Population Compliance and Policy Optimization during COVID-19
-
 This repository contains the official codebase accompanying the research article:
 
-“Insights from Reinforcement Learning and Individual-Based Model Simulations on Population Compliance and Policy Optimization during COVID-19”
+`“Insights from Reinforcement Learning and Individual-Based Model Simulations on Population Compliance and Policy Optimization during COVID-19”`
 
 
-Abstract
+**Abstract**
 
 We aim to develop and evaluate a novel framework that integrates Reinforcement Learning (RL) with existing Individual-Based Models (IBMs) that have been previously developed and validated for simulating the spread of COVID-19. Our primary objective is to assess whether an RL agent can learn adaptive, data-driven intervention policies that maximize economic outcomes while simultaneously reducing hospitalization and mortality rates.
 
@@ -18,7 +16,7 @@ As a case study, we simulate outbreaks under the demographic conditions of two I
 Our model supports the simulation of heterogeneous populations and enables the evaluation of intervention strategies within specific demographic contexts. This stands in contrast to deterministic compartmental models, which assume homogeneous behavior.
 
 
-Requirements
+**Requirements**
 
 Install dependencies using:
 
@@ -77,6 +75,7 @@ pip install -r requirements.txt
 Edit the config.json file to specify the simulation and pandemic-related parameters:
 
 Pandemic and Simulation Parameters:
+
 	•	"latency"
  
 	•	"days_n"
@@ -101,7 +100,7 @@ Pandemic and Simulation Parameters:
 
 **Step 4** – Run Training
 
-python src/_run.py --mode train --config config.json
+`python src/_run.py --mode train --config config.json`
 
 **Step 5** – Check Output Directory
 
@@ -117,13 +116,13 @@ The folder contains:
 	•	params.json containing:
 
 {
-  "episode": <last_episode>,
+ ` "episode": <last_episode>,
   "epsilon": <final_epsilon_value>,
   "action_select_counter": {
     "0": <count>,
     "1": <count>,
     ...
-    "10": <count>
+    "10": <count>`
   }
 }
 
@@ -133,6 +132,7 @@ The folder contains:
 Continuing Training from a Checkpoint
 
 To continue training:
+
 	1.	Set the checkpoint_date field in config.json:
 
 "checkpoint_date": `"YYYY_MM_DD_HH_MM_SS"`
@@ -143,7 +143,7 @@ To continue training:
 
 	3.	Re-run the training script. Training will resume from the saved checkpoint.
 
-Note: The trained model file (model.h5) is not included in this repository due to its large binary size and GitHub’s file hosting limitations. However, the model can be fully re-trained using the included training scripts and configuration files.
+**Note:** The trained model file (model.h5) is not included in this repository due to its large binary size and GitHub’s file hosting limitations. However, the model can be fully re-trained using the included training scripts and configuration files.
 
 Colab Notebooks and Statistical Analysis
 
@@ -156,19 +156,25 @@ This repository includes three Google Colab notebooks used to generate the compl
 	`•	Statistic_evaluation_RL.ipynb`
 
 These notebooks contain:
+
 	•	Reproduction of all figures included in the published article
 	•	Descriptive and inferential statistical evaluations of simulation outcomes
 	•	Performance comparisons between demographic settings and policy interventions
 
 Supplementary Visualizations (Not Included in the Published Article):
+
 	•	Additional visual summaries of policy effects over time
 	•	Detailed epidemic and economic indicators
 	•	Extended sensitivity and exploratory analysis beyond the main scope of the paper
 
 Features
+
 	•	Age-specific SEIR dynamics via individual-based simulation (includes custom “Coderona-virus” model)
+ 
 	•	DQN agent with LSTM architecture for sequential decision making
+ 
 	•	Demographic-aware policy interventions via self.act_dict, including:
+ 
 	•	Social distancing
 	•	Vaccination (household/global)
 	•	Curfews, lockdowns, school/workplace closures
@@ -197,7 +203,7 @@ Once published on Zenodo, replace this citation with the official DOI citation p
 
 
 
-Branch Protection
+**Branch Protection**
 
 The main branch is protected via GitHub’s classic branch protection rules to ensure the reproducibility and integrity of the published results.
 
