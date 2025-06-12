@@ -140,16 +140,18 @@ Determines priority order for vaccination or interventions (e.g., age-based prio
 
 After training completes, a new folder is created under outputs/ with a timestamp in the format:
 
-YYYY_MM_DD_HH_MM_SS
+`YYYY_MM_DD_HH_MM_SS`
 
 The folder contains:
-	1.	Trained model weights:
-	•	Bene_Beraq_model.weight.h5
-	•	Holon_model.weight.h5
-	2.	Training metadata:
-	•	params.json containing:
 
-{
+	1.	Trained model weights:
+	       •	Bene_Beraq_model.weight.h5
+	       •	Holon_model.weight.h5
+ 
+	2.	Training metadata:
+	       •	params.json containing:
+
+`{
  ` "episode": <last_episode>,
   "epsilon": <final_epsilon_value>,
   "action_select_counter": {
@@ -157,7 +159,7 @@ The folder contains:
     "1": <count>,
     ...
     "10": <count>`
-  }
+  }`
 }
 
 
