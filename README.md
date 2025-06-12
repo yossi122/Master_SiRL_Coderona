@@ -68,11 +68,11 @@ Clone or download this repository to your local machine or runtime environment.
 
 **Step 2** – Install Dependencies
 
-pip install -r requirements.txt
+`pip install -r requirements.txt`
 
 **Step 3** – Configure Simulation Parameters
 
-Edit the config.json file to specify the simulation and pandemic-related parameters:
+Edit the `config.json` file to specify the simulation and pandemic-related parameters:
 
 Pandemic and Simulation Parameters:
 
