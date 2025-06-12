@@ -76,27 +76,61 @@ Edit the `config.json` file to specify the simulation and pandemic-related param
 
 Pandemic and Simulation Parameters:
 
-	•	"latency"
+
+Below is a description of all major configuration options in the config.json file:
+
+ **Epidemic & Intervention Setup**
  
-	•	"days_n"
+	•	latency (int)
+Number of days before the first intervention is applied.
+This is the natural spread phase (e.g., 20 or 30).
+
+	•	days_n (int)
+Total number of simulation days, including both latency and policy phases (e.g., 170).
+
+	•	intervention_duration (int)
+Number of days each selected intervention remains active before the agent chooses a new one (e.g., 7, 14, 30).
+
+	•	days_bound (int)
+Maximum number of days allowed per episode. Caps the full simulation run time.
+
+ **RL Training Parameters**
  
-	•	"intervention_duration"
+	•	train_epochs (int)
+Number of training episodes (i.e., full simulation loops where the agent interacts and learns).
+
+ Vaccination Strategy
  
-	•	"train_epochs" – total number of training episodes
+	•	vaccinate_per_day_persons (int)
+Number of individual persons vaccinated per day (typical range: 0 to 300).
+
+	•	vaccinate_per_day_household (int)
+Number of entire households vaccinated per day (typical range: 0 to 100).
+
+ Initial Conditions & Population Structure
  
-	•	"vaccinate_per_day_persons"
- 
-	•	"vaccinate_per_day_household"
- 
-	•	"initial_num_infected"
- 
-	•	"linked_immune_age": { "min_age", "max_age" }
- 
-	•	"compliance"
- 
-	•	"order" – e.g., [ASCENDING, DESCENDING]
- 
-	•	"days_bound" – maximum number of simulation days allowed per scenario
+	•	initial_num_infected (int)
+Number of people who start infected at the beginning of the simulation.
+
+	•	linked_immune_age (object: min_age, max_age)
+Age range for individuals considered immune.
+
+Example:
+
+"linked_immune_age": {
+  "min_age": 12,
+  "max_age": 99
+}
+
+
+	•	compliance (float, range 0.0–1.0)
+Population compliance rate with interventions (e.g., 0.75 = 75% compliance).
+
+	•	order (list: [ASCENDING, DESCENDING])
+Determines priority order for vaccination or interventions (e.g., age-based prioritization).
+
+
+
 
 **Step 4** – Run Training
 
