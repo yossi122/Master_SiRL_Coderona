@@ -244,7 +244,18 @@ Training was conducted on:
 The code may run on smaller GPUs or CPUs, but performance will be significantly slower.
 
 
-Once published on Zenodo, replace this citation with the official DOI citation provided by Zenodo.
+
+  
+  title        = {Master\_SiRL\_Coderona},
+  
+  year         = 2025,
+  
+  publisher    = {Zenodo},
+  
+  doi          = {10.5281/zenodo.15715520},
+  
+  url          = {https://doi.org/10.5281/zenodo.15715520}
+}
 
 
 
