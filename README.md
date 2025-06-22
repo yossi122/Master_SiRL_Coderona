@@ -151,25 +151,18 @@ The folder contains:
 	2.	Training metadata:
 	       •	params.json containing:
 	
-
-        `{
- `              "episode": <last_episode>,
- 
-        	"epsilon": <final_epsilon_value>,
-  
-            	"action_select_counter": {
-  
-    			 "0": <count>,
-    
-   			 "1": <count>,
-    
-    			...
-    
-    			"10": <count>`
-    
-  			}`
-  
-		}
+```
+{
+  “episode”: <last_episode>,
+  “epsilon”: <final_epsilon_value>,
+  “action_select_counter”: {
+  “0”: ,
+  “1”: ,
+  …
+  “10”: 
+  }
+}
+```
 
 
 
