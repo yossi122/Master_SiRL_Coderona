@@ -220,23 +220,29 @@ Features
 	•	Daily economic index computed using model-specific parameters and health states
 	•	Adjustable compliance rates and age-specific immunity
 
+**Example Visualizations from Article**
+
+A dedicated folder `examples/` contains:
+
+	•	Two CSV data files:
+ 
+	•	bene-baraq_metrics_output.csv
+ 
+	•	holon_metrics_output.csv
+ 
+These contain preprocessed simulation metrics for the cities of Bene Beraq and Holon, used in visualizations.
+
+	•	One Google Colab notebook:
+	•	Analysis_and_Visualization_Holon_Bene_Beraq.ipynb
 
 
-Training Environment
+**Training Environment**
 
 Training was conducted on:
 	•	NVIDIA A100 80GB PCIe GPU
 
 The code may run on smaller GPUs or CPUs, but performance will be significantly slower.
 
-Citation (BibTeX)
-
-@article{your2025paper,
-  title={Insights from Reinforcement Learning and Individual-Based Model Simulations on Population Compliance and Policy Optimization during COVID-19},
-  author={Your Name},
-  year={2025},
-  url={https://github.com/yossi122/Master_SiRL_Coderona}
-}
 
 Once published on Zenodo, replace this citation with the official DOI citation provided by Zenodo.
 
