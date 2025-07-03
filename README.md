@@ -245,11 +245,6 @@ Training was conducted on:
 
 The code may run on smaller GPUs or CPUs, but performance will be significantly slower.
 
-
-Once published on Zenodo, replace this citation with the official DOI citation provided by Zenodo.
-
-
-
 **Branch Protection**
 
 The main branch is protected via GitHub’s classic branch protection rules to ensure the reproducibility and integrity of the published results.
