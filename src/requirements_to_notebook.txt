@@ -156,7 +156,7 @@ jupyterlab @ file:///croot/jupyterlab_1706802623017/work
 jupyterlab-pygments @ file:///tmp/build/80754af9/jupyterlab_pygments_1601490720602/work
 jupyterlab-widgets @ file:///croot/jupyterlab_widgets_1700168618520/work
 jupyterlab_server @ file:///croot/jupyterlab_server_1699555425460/work
-keras==3.2.1
+keras==3.9.0
 keyring @ file:///croot/keyring_1678999217139/work
 kiwisolver @ file:///work/ci_py311/kiwisolver_1676827230232/work
 lazy-object-proxy @ file:///work/ci_py311/lazy-object-proxy_1676827255418/work
