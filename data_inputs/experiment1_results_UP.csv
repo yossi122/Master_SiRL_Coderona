@@ -1,0 +1,182 @@
+,,,,,
+Model ,City,Economic,Hospitalize,Deceased ,Rt
+RL,Holon,3062152301,70,17,1.0
+RL,Holon,3146517874,120,22,1.1
+RL,Holon,3080938497,189,32,1.1
+RL,Holon,3040514482,322,44,0.9
+RL,Holon,2638062162,548,135,0.8
+RL,Holon,2156240102,318,99,0.8
+RL,Holon,3006312301,362,79,0.7
+RL,Holon,3117027081,150,29,0.9
+RL,Holon,2895773396,345,79,1.0
+RL,Holon,2958396480,410,68,1.0
+RL,Holon,2917335195,386,207,0.8
+RL,Holon,2315272165,200,39,1.0
+RL,Holon,2995324108,462,90,0.9
+RL,Holon,2539650692,582,354,0.9
+RL,Holon,2668960565,225,49,0.8
+RL,Holon,2772060296,457,76,0.7
+RL,Holon,2453975104,536,109,0.6
+RL,Holon,2213133479,1100,249,0.8
+RL,Holon,2364057728,140,18,0.9
+RL,Holon,3133017202,241,220,0.9
+RL,Holon,3247051339,286,70,1.0
+RL,Holon,3071064902,234,42,1.0
+RL,Holon,3070058649,286,64,1.0
+RL,Holon,3105208396,252,46,0.9
+RL,Holon,3049268570,277,54,0.9
+RL,Holon,3184966490,209,39,1.1
+RL,Holon,3118220717,310,59,1.0
+RL,Holon,2801544050,246,58,0.8
+RL,Holon,2720741233,514,106,0.7
+RL,Holon,3040232399,250,193,0.7
+RL,Bene Beraq,2241451234,260,248,0.8
+RL,Bene Beraq,2557278078,364,277,0.9
+RL,Bene Beraq,2290022745,205,47,0.9
+RL,Bene Beraq,2256273417,142,24,0.9
+RL,Bene Beraq,2056984552,177,167,1.0
+RL,Bene Beraq,1995598381,331,84,1.0
+RL,Bene Beraq,1975598319,249,69,0.8
+RL,Bene Beraq,1884957927,300,108,0.9
+RL,Bene Beraq,1810160249,335,51,0.9
+RL,Bene Beraq,1683376275,154,81,0.7
+RL,Bene Beraq,1783270250,161,37,0.8
+RL,Bene Beraq,1933038223,229,67,0.9
+RL,Bene Beraq,1841704977,155,62,0.9
+RL,Bene Beraq,1660855936,99,25,0.9
+RL,Bene Beraq,1912236578,190,71,1.0
+RL,Bene Beraq,2988305204,41,11,1.0
+RL,Bene Beraq,2006172306,142,24,0.9
+RL,Bene Beraq,1734440608,181,43,0.9
+RL,Bene Beraq,1790185441,171,30,0.7
+RL,Bene Beraq,2110001619,82,15,1.1
+RL,Bene Beraq,2290019046,324,83,0.8
+RL,Bene Beraq,1812359654,92,25,0.9
+RL,Bene Beraq,2079109648,80,21,1.0
+RL,Bene Beraq,1985908138,333,90,0.9
+RL,Bene Beraq,1865407778,371,69,0.8
+RL,Bene Beraq,1922359654,99,36,0.9
+RL,Bene Beraq,2073346787,166,100,0.8
+RL,Bene Beraq,1999818120,209,121,1.0
+RL,Bene Beraq,1970031101,201,104,0.7
+RL,Bene Beraq,1999887037,78,35,0.8
+No Intervention,Holon,2062493954,1652,352,1.4
+No Intervention,Holon,1805517298,1207,281,1.3
+No Intervention,Holon,1845873744,1096,261,1.3
+No Intervention,Holon,1797687146,1213,270,1.0
+No Intervention,Holon,1851482946,1117,270,1.2
+No Intervention,Holon,1814838320,1197,283,1.1
+No Intervention,Holon,1818694726,1220,274,1.0
+No Intervention,Holon,1816400598,1292,372,1.9
+No Intervention,Holon,1732659544,1241,275,1.1
+No Intervention,Holon,2004872399,1178,478,1.1
+No Intervention,Holon,2046167411,1245,264,0.9
+No Intervention,Holon,1835018390,1532,698,1.9
+No Intervention,Holon,2303009989,1175,430,1.8
+No Intervention,Holon,2043902959,1121,935,1.4
+No Intervention,Holon,2071719998,1443,769,1.4
+No Intervention,Holon,2206435320,1389,431,1.0
+No Intervention,Holon,1917093027,1660,504,1.3
+No Intervention,Holon,1955217656,1589,873,1.6
+No Intervention,Holon,2097759877,1567,730,0.9
+No Intervention,Holon,1990757630,1463,754,0.9
+No Intervention,Holon,1899270629,1634,628,1.9
+No Intervention,Holon,2081529922,1983,314,1.8
+No Intervention,Holon,1799837854,1099,402,1.0
+No Intervention,Holon,1997139060,1476,604,1.2
+No Intervention,Holon,2479219061,1310,294,1.3
+No Intervention,Holon,2021639977,1229,317,1.9
+No Intervention,Holon,2087747795,1677,680,1.7
+No Intervention,Holon,1967170096,1086,453,1.9
+No Intervention,Holon,1992511118,1198,735,1.3
+No Intervention,Holon,2005879331,1289,744,1.1
+No Intervention,Bene Beraq,2063673824,480,100,1.9
+No Intervention,Bene Beraq,1815956705,289,189,1.3
+No Intervention,Bene Beraq,1702163096,297,172,1.2
+No Intervention,Bene Beraq,1641153622,333,95,1.4
+No Intervention,Bene Beraq,1951514398,330,81,0.9
+No Intervention,Bene Beraq,1801256397,302,99,1.2
+No Intervention,Bene Beraq,1846940920,314,85,1.1
+No Intervention,Bene Beraq,1879059664,361,198,1.1
+No Intervention,Bene Beraq,1967954906,386,186,1.2
+No Intervention,Bene Beraq,2009064581,453,106,1.5
+No Intervention,Bene Beraq,1910896534,364,264,1.4
+No Intervention,Bene Beraq,2065755325,625,226,1.3
+No Intervention,Bene Beraq,1865541620,532,257,2.1
+No Intervention,Bene Beraq,1941690004,431,88,1.8
+No Intervention,Bene Beraq,1939640385,658,124,1.7
+No Intervention,Bene Beraq,1769889876,168,109,1.9
+No Intervention,Bene Beraq,1389016000,431,98,1.5
+No Intervention,Bene Beraq,1692351760,505,118,1.6
+No Intervention,Bene Beraq,1740083655,286,59,1.5
+No Intervention,Bene Beraq,1901360352,764,308,1.3
+No Intervention,Bene Beraq,1957620011,527,81,1.1
+No Intervention,Bene Beraq,1923177960,855,121,1.2
+No Intervention,Bene Beraq,2032058543,654,241,1.3
+No Intervention,Bene Beraq,2005890003,488,327,1.2
+No Intervention,Bene Beraq,1998854031,388,198,1.6
+No Intervention,Bene Beraq,1889430002,277,97,1.4
+No Intervention,Bene Beraq,1975333301,444,117,1.1
+No Intervention,Bene Beraq,2030069100,499,377,1.4
+No Intervention,Bene Beraq,1869990451,368,109,1.2
+No Intervention,Bene Beraq,1990008438,266,202,1.3
+Lockdown & Vaccination,Holon,1761811784,1086,125,0.9
+Lockdown & Vaccination,Holon,1645549744,1113,208,1.0
+Lockdown & Vaccination,Holon,1737008996,1141,263,0.8
+Lockdown & Vaccination,Holon,1582742740,1161,148,0.7
+Lockdown & Vaccination,Holon,1601374794,976,256,0.8
+Lockdown & Vaccination,Holon,1736572632,1321,191,0.8
+Lockdown & Vaccination,Holon,1598357451,947,157,0.6
+Lockdown & Vaccination,Holon,1600673878,985,247,0.7
+Lockdown & Vaccination,Holon,1852909156,641,133,0.5
+Lockdown & Vaccination,Holon,1800162643,705,133,0.7
+Lockdown & Vaccination,Holon,1821809664,1289,239,0.9
+Lockdown & Vaccination,Holon,1886185208,891,200,1.0
+Lockdown & Vaccination,Holon,1907106529,933,227,0.9
+Lockdown & Vaccination,Holon,1402752786,646,256,0.8
+Lockdown & Vaccination,Holon,1892320921,880,193,0.9
+Lockdown & Vaccination,Holon,1923403752,1056,301,0.9
+Lockdown & Vaccination,Holon,1775833210,543,167,0.8
+Lockdown & Vaccination,Holon,1584498200,773,264,0.6
+Lockdown & Vaccination,Holon,1779420064,621,106,0.9
+Lockdown & Vaccination,Holon,1995200814,959,177,1.0
+Lockdown & Vaccination,Holon,1858840081,744,277,1.1
+Lockdown & Vaccination,Holon,1830095411,842,90,1.0
+Lockdown & Vaccination,Holon,1916400021,592,93,0.6
+Lockdown & Vaccination,Holon,1794442001,1099,188,1.1
+Lockdown & Vaccination,Holon,2004983310,1642,98,1.0
+Lockdown & Vaccination,Holon,1684332108,699,32,0.9
+Lockdown & Vaccination,Holon,1488003794,744,47,0.8
+Lockdown & Vaccination,Holon,1844321009,599,102,0.9
+Lockdown & Vaccination,Holon,1933306418,632,64,0.9
+Lockdown & Vaccination,Holon,1884398321,432,76,0.9
+Lockdown & Vaccination,Bene Beraq,1603047516,279,73,0.4
+Lockdown & Vaccination,Bene Beraq,1594036108,270,25,0.6
+Lockdown & Vaccination,Bene Beraq,1806782487,331,87,1.1
+Lockdown & Vaccination,Bene Beraq,1860011118,296,77,0.9
+Lockdown & Vaccination,Bene Beraq,1842488262,340,78,0.7
+Lockdown & Vaccination,Bene Beraq,1854748780,243,87,0.8
+Lockdown & Vaccination,Bene Beraq,1743529963,250,55,0.7
+Lockdown & Vaccination,Bene Beraq,1854780792,281,72,0.5
+Lockdown & Vaccination,Bene Beraq,1742020984,359,79,0.9
+Lockdown & Vaccination,Bene Beraq,1691655591,306,68,0.8
+Lockdown & Vaccination,Bene Beraq,1784137297,275,75,0.8
+Lockdown & Vaccination,Bene Beraq,1822287078,339,67,0.6
+Lockdown & Vaccination,Bene Beraq,1666396690,109,62,0.9
+Lockdown & Vaccination,Bene Beraq,1727030110,181,43,0.9
+Lockdown & Vaccination,Bene Beraq,1888805073,159,87,1.0
+Lockdown & Vaccination,Bene Beraq,1479932705,455,50,0.8
+Lockdown & Vaccination,Bene Beraq,1336984305,511,109,0.9
+Lockdown & Vaccination,Bene Beraq,1596642970,386,94,0.9
+Lockdown & Vaccination,Bene Beraq,1853995134,333,69,1.0
+Lockdown & Vaccination,Bene Beraq,1809943831,452,49,0.8
+Lockdown & Vaccination,Bene Beraq,1894409214,593,128,1.0
+Lockdown & Vaccination,Bene Beraq,1774391004,488,41,0.9
+Lockdown & Vaccination,Bene Beraq,1665351985,483,65,0.9
+Lockdown & Vaccination,Bene Beraq,1725969611,238,31,0.7
+Lockdown & Vaccination,Bene Beraq,1840084187,388,76,1.0
+Lockdown & Vaccination,Bene Beraq,1752300951,198,19,0.9
+Lockdown & Vaccination,Bene Beraq,1889322750,295,106,1.1
+Lockdown & Vaccination,Bene Beraq,1593396286,377,89,0.9
+Lockdown & Vaccination,Bene Beraq,1688935040,537,42,0.8
+Lockdown & Vaccination,Bene Beraq,1799081543,277,59,0.9

@@ -3,9 +3,9 @@ import logging
 import os
 import sys
 import numpy as np
-
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))  # Adding the src folder to PYTHONPATH
-
+# Add the 'src' directory to the Python path
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))  
+# Import project modules
 from src.scenarios import *
 from src.seir import DiseaseState
 from src.simulation.initial_infection_params import NaiveInitialInfectionParams, InitialImmuneType
@@ -15,15 +15,14 @@ from src.run_utils import RepeatJob, SimpleJob, run, make_base_infectiousness_to
 import src.util.seed as seed
 from src.simulation.simulation import ORDER
 from src.simulation.initial_infection_params import NaiveInitialInfectionParams, InitialImmuneType
+# Set global random seed
 seed.set_random_seed()
 
 
-# ===== NEW BLOCK ===
+# wandb logging and DQN reinforcement learning
 import wandb
 #from wandb.keras import WandbMetricsLogger, WandbModelCheckpoint
 from src.simulation._DQN import wandb_routine, get_log_history
-
-# ===== NEW BLOCK ===
 
 def generate_scenario_name(
         city_name,
@@ -41,14 +40,17 @@ def generate_scenario_name(
         symptomatic_probs_scale,
         minimum_infectiousness_age):
     #return f"""{city_name},{scenario},inf={initial_num_infected},immune={percentage_immuned}\n, imm_per_day={immune_per_day},imm_order={immune_order}\n,imm_comp={immune_complience_at_start}\n, comp={compliance},ci_delay={ci_delay},hi_delay={hi_delay}\n, imm_src={immune_source}, min_age={min_age}\n, min_inf_age={minimum_infectiousness_age}"""
+    # Generate a simplified name for each scenario            
     return f"{city_name},{scenario},imm_per_day={immune_per_day},comp={compliance},ci_delay={ci_delay},hi_delay={hi_delay}"
 
 def get_rescaled_symptomatic_probs(symptomatic_probs_scale):
+    # Rescale the probabilities of showing symptoms given infection    
     current_probs = Params.loader()['disease_parameters']['symptomatic_given_infected_per_age']
     return [min(1, symptomatic_probs_scale * t) for t in current_probs]
 
 
 def get_datas_to_plot():
+    # Specify which disease states to track for plotting    
     graphs = {
         "infected": [
             DiseaseState.SYMPTOMATICINFECTIOUS,
@@ -108,7 +110,7 @@ def setup_logger(log_dir=os.getcwd(), log_file='app.log'):
 
 
 def custom_exception_handler(exc_type, exc_value, exc_traceback):
-    # Log the exception
+    # Custom global exception handler for uncaught exceptions
     logging.error("Uncaught exception", exc_info=(exc_type, exc_value, exc_traceback))
 
 
@@ -117,10 +119,12 @@ sys.excepthook = custom_exception_handler
 
 
 def config_dict_to_tuple(dicts_list):
+    # Convert list of dicts to list of 2-tuples based on first two keys    
     keys = list(dicts_list[0].keys())
     return [(e[keys[0]], e[keys[1]]) for e in dicts_list]
 
 def load_config_params(ConfigData):
+    # Extract experiment parameters and scenarios from configuration dictionary    
     experiment_params = {
         "experiment_type": ConfigData["experiment_type"],
         "experiment_mode": ConfigData["experiment_mode"],
@@ -137,10 +141,11 @@ def load_config_params(ConfigData):
         "symptomatic_probs_scale": ConfigData["symptomatic_probs_scale"],
         "wandb": ConfigData["wandb"]
     }
+    # Map scenario names to functions    
     scenarios = {
         name: globals()[func_name] for name, func_name in ConfigData['scenarios'].items()
     }
-
+    # Set prefix and scenario handling based on experiment type
     if experiment_params['experiment_type'].lower() == 'dqn':
         t = scenarios['Empty_scenario']
         scenarios.clear()
@@ -149,18 +154,18 @@ def load_config_params(ConfigData):
     else:
         scenarios.pop('Empty_scenario', None)
         prefix = 'basic'
-
+    # Limit test mode to first city and age setting
     if experiment_params["experiment_mode"].lower() == 'test': # train - full list, test - first city
         experiment_params["linked_immune_age"] = [experiment_params["linked_immune_age"][0]]
         experiment_params["linked_city_scale"] = [experiment_params["linked_city_scale"][0]]
-
+    # Convert order strings to enum values
     if experiment_params["order"] == ['ASCENDING']:
         experiment_params["order"] = [ORDER.ASCENDING]
     elif experiment_params["order"] == ['DESCENDING']:
         experiment_params["order"] = [ORDER.DESCENDING]
     elif experiment_params["order"] == ['NONE']:
         experiment_params["order"] = [ORDER.NONE]
-
+    # Replace immune source strings with enum values
     for item in experiment_params["linked_immune_age"]:
         source = item["immune_source"]
         if source in InitialImmuneType.__dict__:
@@ -169,24 +174,20 @@ def load_config_params(ConfigData):
     return experiment_params, scenarios, prefix
 
 def main():
-    # logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
+    # Initialize logger and plotting data structures
     setup_logger()
     datas_to_plot = get_datas_to_plot()
 
-    # choosing the city and the scale of the run:
-    # the city name and scale determine the city and the size proportion to take (use 'all' for entire country)
-    # city_name, scale = 'holon', 1
-    # city_name, scale = 'all', 0.01 # This means loading 1% of the entire country
-    # city_name, scale = 'all', 0.1 # This means loading the entire country
     print("Running all simulations...")
+    # Load configuration file    
     config_path = os.path.join(os.path.dirname(__file__), "config.json")
     with open(config_path) as json_data_file:
         ConfigData = json.load(json_data_file)
         paramsDataPath = ConfigData['ParamsFilePath']
 
-    # load job parameter from ConfigData
+    # Extract simulation parameters and scenarios
     experiment_params, scenarios, prefix = load_config_params(ConfigData)
-    # == WANDB, sweep, agent
+    # Initialize Weights & Biases if enabled
     if experiment_params["wandb"]["usage_flag"]:
         flag = experiment_params["wandb"]["usage_flag"]
         proj = experiment_params["wandb"]["experiment_name"]
@@ -195,8 +196,9 @@ def main():
                       project_name=proj,
                       team_name=team)
         # wandb.agent(sweep_id, function=wandb_routine, count=10)
-
+    # Load disease parameters
     Params.load_from(os.path.join(os.path.dirname(__file__), paramsDataPath), override=True)
+    # Prepare simulation jobs    
     jobs = []
     zoo = experiment_params["linked_city_scale"]
     foo = config_dict_to_tuple(experiment_params["linked_city_scale"])
@@ -215,6 +217,7 @@ def main():
                                             "minimum_infectiousness_age"]:  # [0, 18]
                                             for symptomatic_probs_scale in experiment_params["symptomatic_probs_scale"]:
                                                 for scenario_name, intervention_scheme in scenarios.items():
+                                                    # Set dynamic parameters    
                                                     params_to_change = {
                                                         ('disease_parameters',
                                                          'symptomatic_given_infected_per_age'): get_rescaled_symptomatic_probs(
@@ -222,7 +225,7 @@ def main():
                                                         ('person',
                                                          'minimum_infectiousness_age'): minimum_infectiousness_age
                                                     }
-
+                                                    # Create a scenario name
                                                     full_scenario_name = generate_scenario_name(f'{prefix}_{city_name}',
                                                                                                 scenario_name,
                                                                                                 initial_num_infected,
@@ -237,7 +240,7 @@ def main():
                                                                                                 hi_delay,
                                                                                                 symptomatic_probs_scale,
                                                                                                 minimum_infectiousness_age)
-
+                                                    # Define job
                                                     simple = SimpleJob(full_scenario_name,
                                                                        days=150,
                                                                        city_name=city_name,
@@ -256,10 +259,10 @@ def main():
                                                                        interventions=intervention_scheme(
                                                                            compliance, ci_delay, hi_delay),
                                                                        datas_to_plot=datas_to_plot)
-                                                    jobs.append(simple)
+    # Remove old output if exists                                                jobs.append(simple)
     if os.path.exists('Holon.csv'):
         os.remove('Holon.csv')
-
+    # Log experiment history and run jobs
     get_log_history()
     run(jobs, multi_processed=False, with_population_caching=False, verbosity=False)
 
