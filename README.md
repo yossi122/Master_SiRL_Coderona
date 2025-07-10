@@ -2,7 +2,7 @@ This repository contains the official codebase accompanying the research article
 
 `“Insights from Reinforcement Learning and Individual-Based Model Simulations on Population Compliance and Policy Optimization during COVID-19”`
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15715520.svg)](https://doi.org/10.5281/zenodo.15715520)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15715520.svg)](https://doi.org/10.5281/zenodo.15715520) ![Python package](https://github.com/yossi122/Master_SiRL_Coderona/actions/workflows/python-package.yml/badge.svg)
 
 
 **Abstract**
@@ -38,7 +38,7 @@ Required packages include:
  
 	•	matplotlib==3.4.3
  
-	•	numpy==1.24.3
+	•	numpy==1.23.5
  
 	•	pandas==1.3.4
  
@@ -48,7 +48,7 @@ Required packages include:
  
 	•	sanic==24.6.0
  
-	•	scipy==1.4.1
+	•	scipy==1.10.1
  
 	•	seaborn==0.11.2
  
