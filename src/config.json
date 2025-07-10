@@ -15,25 +15,25 @@
     ],
     "linked_immune_compliance": [
         {
-            "target_immune_percentage": 0.8,
-            "immune_compliance": 0.7
+            "target_immune_percentage": 1,
+            "immune_compliance": 1
         }
     ],
     "absolute_stats_flag": true,
-    "people_per_day": [80],
-    "vaccinate_per_day_persons": 250,
+    "people_per_day": [100],
+    "vaccinate_per_day_persons": 25,
     "vaccinate_per_day_household": 25,
     "latency days_n": 30,
-    "intervention_duration": 25,
+    "intervention_duration": 35,
     "linked_immune_age": [
         {
             "immune_source": "BY_NEIGHBORHOOD",
-            "min_age": 0,
+            "min_age": 6,
             "max_age": 99
         }
     ],
     "initial_num_infected": [300],
-    "num_infected_spread": [1, 1],
+    "num_infected_spread": [0, 0],
     "init_infected_equally": false,
     "linked_city_scale": [
         {
@@ -48,9 +48,9 @@
     ],
     "compliance": [0.8],
     "compliance_spread": [0.2, 0.1],
-    "order": ["DESCENDING"],
-    "ci_delay": [4],
-    "hi_delay": [4],
+    "order": ["ASCENDING"],
+    "ci_delay": [2],
+    "hi_delay": [2],
     "minimum_infectiousness_age": [0],
     "symptomatic_probs_scale": [1],
     "scenarios": {
@@ -59,13 +59,13 @@
         "reality1": "scenario_reality1",
         "paper_1": "paper_1"
     },
-    "train_epochs": 250,
+    "train_epochs": 1,
     "stop_condition": {
         "rt_flag": false,
         "rt": 0.75,
         "infected_population": 0.01,
         "vaccinated_population": 0.01,
-        "days_bound": 130
+        "days_bound": 170
     },
     "wandb": {
         "usage_flag": true,
@@ -120,7 +120,7 @@
     },
     "dqn_agent": {
         "mode": "train",
-        "checkpoint_date": "2024_10_23_16_19_04",
+        "checkpoint_date": null,
         "q_equation": "classical",
         "force_exploring_flag": false,
         "train_params": {
