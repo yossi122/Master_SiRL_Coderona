@@ -70,8 +70,8 @@
     "wandb": {
         "usage_flag": true,
         "mode": "online",
-        "experiment_name": "coderona_dqn",
-        "team_name": "Epidemiology_DQN_Control",
+        "experiment_name": "your experiment name",
+        "team_name": "your team name",
         "summing_in": {
             "flag": true,
             "stat_list": [
@@ -85,7 +85,7 @@
                 "deceased_population"
             ]
         },
-        "api_key": "98ed8d9f59adb6afeffd7467e8c68ce94b36355a",
+        "api_key": "enter your API key",
         "log_vars": [
             "infected_population",
             "vaccinated_population",
