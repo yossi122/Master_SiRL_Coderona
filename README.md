@@ -6,6 +6,8 @@ This repository contains the official codebase accompanying the research article
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Python](https://img.shields.io/badge/python-3.8%2B-blue)
 ![Repo Size](https://img.shields.io/github/repo-size/yossi122/Master_SiRL_Coderona)
+![Top Language](https://img.shields.io/github/languages/top/yossi122/Master_SiRL_Coderona)
+
 
 **Abstract**
 
