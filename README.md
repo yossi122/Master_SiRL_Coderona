@@ -8,7 +8,6 @@ This repository contains the official codebase accompanying the research article
 ![Repo Size](https://img.shields.io/github/repo-size/yossi122/Master_SiRL_Coderona)
 ![Top Language](https://img.shields.io/github/languages/top/yossi122/Master_SiRL_Coderona)
 
-
 **Abstract**
 
 We aim to develop and evaluate a novel framework that integrates Reinforcement Learning (RL) with existing Individual-Based Models (IBMs) that have been previously developed and validated for simulating the spread of COVID-19. Our primary objective is to assess whether an RL agent can learn adaptive, data-driven intervention policies that maximize economic outcomes while simultaneously reducing hospitalization and mortality rates.
