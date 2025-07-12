@@ -657,7 +657,7 @@ class AgentLSTM:
         self.input_shape = state_size + 1  # SEIRDE + Action
         self.n_outputs = len(sub_dict.keys())
         self.seen_states = {i: 0 for i in range(start_key, end_key+1)}
-        #TODO: add state_size, action_size, model, target_model
+        
 
         model = keras.Sequential([
         #keras.layers.Bidirectional(keras.layers.LSTM(128, return_sequences=True),
