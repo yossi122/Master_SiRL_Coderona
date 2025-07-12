@@ -7,6 +7,7 @@ This repository contains the official codebase accompanying the research article
 
 ![Python](https://img.shields.io/badge/python-3.8%2B-blue)
 ![Top Language](https://img.shields.io/github/languages/top/yossi122/Master_SiRL_Coderona)
+[![Docs](https://img.shields.io/badge/docs-online-brightgreen)](https://yossi122.github.io/Master_SiRL_Coderona/)
 
 **Abstract**
 
