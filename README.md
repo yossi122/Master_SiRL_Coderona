@@ -1,4 +1,4 @@
-This repository contains the official codebase accompanying the research article:
+`This repository contains the official codebase accompanying the research article:`
 
 **`“Insights from Reinforcement Learning and Individual-Based Model Simulations on Population Compliance and Policy Optimization during COVID-19”`**
 
