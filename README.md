@@ -1,6 +1,6 @@
 This repository contains the official codebase accompanying the research article:
 
-`“Insights from Reinforcement Learning and Individual-Based Model Simulations on Population Compliance and Policy Optimization during COVID-19”`
+**`“Insights from Reinforcement Learning and Individual-Based Model Simulations on Population Compliance and Policy Optimization during COVID-19”`**
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15715520.svg)](https://doi.org/10.5281/zenodo.15715520) ![Python package](https://github.com/yossi122/Master_SiRL_Coderona/actions/workflows/python-package.yml/badge.svg)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
