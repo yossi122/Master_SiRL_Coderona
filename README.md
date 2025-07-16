@@ -11,6 +11,9 @@
 [![version](https://img.shields.io/badge/version-1.0.0-blue)](https://doi.org/10.5281/zenodo.15715520)
 ![Code of Conduct](https://img.shields.io/badge/code%20of%20conduct-yes-blue)
 
+
+
+
 **Abstract**
 
 We aim to develop and evaluate a novel framework that integrates Reinforcement Learning (RL) with existing Individual-Based Model (IBM) that have been previously developed and validated for simulating the spread of COVID-19 (Coderona). Our primary objective is to assess whether an RL agent can learn adaptive, data-driven intervention policies that maximize economic outcomes while simultaneously reducing hospitalization and mortality rates.
