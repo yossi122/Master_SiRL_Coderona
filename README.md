@@ -13,11 +13,7 @@
 
 ## Notebooks — Run in Colab
 
-> **Note:** To run these notebooks and access all project data, please make sure to run the following cell at the top of each notebook:
-> 
-> ```python
-> !git clone https://github.com/yossi122/Master_SiRL_Coderona.git
-> ```
+Note: All relevant data files required by the notebooks are included in this repository, under the data_inputs/ and examples/examples/ directories. When running in Colab, you can access these files directly after cloning the repository, or by using the correct relative paths in the code cells.
 
 - **Statistical1_Analysis_SiRL_Coderona_2.ipynb** – Main statistical analysis  
   [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yossi122/Master_SiRL_Coderona/blob/main/Statistical1_Analysis_SiRL_Coderona_2.ipynb)
