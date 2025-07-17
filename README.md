@@ -11,6 +11,25 @@
 [![version](https://img.shields.io/badge/version-1.0.0-blue)](https://doi.org/10.5281/zenodo.15715520)
 ![Code of Conduct](https://img.shields.io/badge/code%20of%20conduct-yes-blue)
 
+## Notebooks — Run in Colab
+
+> **Note:** To run these notebooks and access all project data, please make sure to run the following cell at the top of each notebook:
+> 
+> ```python
+> !git clone https://github.com/yossi122/Master_SiRL_Coderona.git
+> ```
+
+- **Statistical1_Analysis_SiRL_Coderona_2.ipynb** – Main statistical analysis  
+  [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yossi122/Master_SiRL_Coderona/blob/main/Statistical1_Analysis_SiRL_Coderona_2.ipynb)
+
+- **Statistical2_Analysis_SiRL_Coderona.ipynb** – Model comparison analysis  
+  [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yossi122/Master_SiRL_Coderona/blob/main/Statistical2_Analysis_SiRL_Coderona.ipynb)
+
+- **Statistic_evaluation_RL.ipynb** – RL agent performance evaluation  
+  [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yossi122/Master_SiRL_Coderona/blob/main/Statistic_evaluation_RL.ipynb)
+
+- **Analysis_and_Visualization_Holon_Bene_Beraq.ipynb** – Data analysis: Holon and Bene Beraq  
+  [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yossi122/Master_SiRL_Coderona/blob/main/examples/examples/Analysis_and_Visualization_Holon_Bene_Beraq.ipynb)
 
 
 
