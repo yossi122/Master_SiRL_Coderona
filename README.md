@@ -231,7 +231,6 @@ Supplementary Visualizations (Not Included in the Published Article):
 	•	Detailed epidemic and economic indicators
 	•	Extended sensitivity and exploratory analysis beyond the main scope of the paper
 
-You can open each notebook directly in Google Colab by clicking on the “Open in Colab” badge next to its name.
 
 **Data Files**
 
@@ -252,25 +251,27 @@ All data files required to run the notebooks are provided within the repository:
 	•	holon_metrics_output.csv: Simulation metrics output data specifically related to the city of Holon.
  
 
-`How to Load Data in Colab`
+**How to Load Data in Colab**
 
-When running these notebooks in Colab, please clone the repository first by running the following command in the notebook’s first cell:
+You can run the notebooks using either of these two options:
 
-!git clone https://github.com/yossi122/Master_SiRL_Coderona.git
+**Option 1:** Clone the full repository
 
-Then you can load the data directly from the cloned directory like this:
+To have all data files and scripts available, clone the repository by running this command in the notebook’s first cell:
 
-import pandas as pd
+`!git clone https://github.com/yossi122/Master_SiRL_Coderona.git`
 
-# Example for loading experiment data
-df_experiment1 = pd.read_csv('Master_SiRL_Coderona/data_inputs/experiment1_results_UP.csv')
+Then you can load the data directly from the cloned directory, for example:
 
-# Example for loading city-specific data
-df_bene_baraq = pd.read_csv('Master_SiRL_Coderona/examples/examples/bene-baraq_metrics_output.csv')
+`import pandas as pd`
+
+`df = pd.read_csv('Master_SiRL_Coderona/data_inputs/experiment1_results_UP.csv')`
+
+**Option 2:** Download data files manually
+
+Alternatively, you can download only the required data files (from the data_inputs and examples/examples directories) directly to your local or Google Drive. This allows you to run the notebooks without cloning the entire repository.
 
 ## Notebooks — Run in Colab
-
-Note: All relevant data files required by the notebooks are included in this repository, under the data_inputs/ and examples/examples/ directories. When running in Colab, you can access these files directly after cloning the repository, or by using the correct relative paths in the code cells.
 
 - **Statistical1_Analysis_SiRL_Coderona_2.ipynb** – Main statistical analysis  
   [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yossi122/Master_SiRL_Coderona/blob/main/Statistical1_Analysis_SiRL_Coderona_2.ipynb)
@@ -283,6 +284,8 @@ Note: All relevant data files required by the notebooks are included in this rep
 
 - **Analysis_and_Visualization_Holon_Bene_Beraq.ipynb** – Data analysis: Holon and Bene Beraq  
   [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yossi122/Master_SiRL_Coderona/blob/main/examples/examples/Analysis_and_Visualization_Holon_Bene_Beraq.ipynb)
+
+You can open each notebook directly in Google Colab by clicking on the “Open in Colab” badge next to its name.
 
 
 **Training Environment**
