@@ -11,24 +11,6 @@
 [![version](https://img.shields.io/badge/version-1.0.0-blue)](https://doi.org/10.5281/zenodo.15715520)
 ![Code of Conduct](https://img.shields.io/badge/code%20of%20conduct-yes-blue)
 
-## Notebooks — Run in Colab
-
-Note: All relevant data files required by the notebooks are included in this repository, under the data_inputs/ and examples/examples/ directories. When running in Colab, you can access these files directly after cloning the repository, or by using the correct relative paths in the code cells.
-
-- **Statistical1_Analysis_SiRL_Coderona_2.ipynb** – Main statistical analysis  
-  [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yossi122/Master_SiRL_Coderona/blob/main/Statistical1_Analysis_SiRL_Coderona_2.ipynb)
-
-- **Statistical2_Analysis_SiRL_Coderona.ipynb** – Model comparison analysis  
-  [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yossi122/Master_SiRL_Coderona/blob/main/Statistical2_Analysis_SiRL_Coderona.ipynb)
-
-- **Statistic_evaluation_RL.ipynb** – RL agent performance evaluation  
-  [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yossi122/Master_SiRL_Coderona/blob/main/Statistic_evaluation_RL.ipynb)
-
-- **Analysis_and_Visualization_Holon_Bene_Beraq.ipynb** – Data analysis: Holon and Bene Beraq  
-  [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yossi122/Master_SiRL_Coderona/blob/main/examples/examples/Analysis_and_Visualization_Holon_Bene_Beraq.ipynb)
-
-
-
 **Abstract**
 
 We aim to develop and evaluate a novel framework that integrates Reinforcement Learning (RL) with existing Individual-Based Model (IBM) that have been previously developed and validated for simulating the spread of COVID-19 (Coderona). Our primary objective is to assess whether an RL agent can learn adaptive, data-driven intervention policies that maximize economic outcomes while simultaneously reducing hospitalization and mortality rates.
@@ -210,28 +192,6 @@ To continue training:
 
 **Note:** The trained model file (model.h5) is not included in this repository due to its large binary size and GitHub’s file hosting limitations. However, the model can be fully re-trained using the included training scripts and configuration files.
 
-Colab Notebooks and Statistical Analysis
-
-This repository includes three Google Colab notebooks used to generate the complete set of statistical analyses and visualizations referenced in the article:
-
-	`•	Statistical1_Analysis_SiRL_Coderona-2.ipynb`
- 
-	`•	Statistical2_Analysis_SiRL_Coderona.ipynb`
- 
-	`•	Statistic_evaluation_RL.ipynb`
-
-These notebooks contain:
-
-	•	Reproduction of all figures included in the published article
-	•	Descriptive and inferential statistical evaluations of simulation outcomes
-	•	Performance comparisons between demographic settings and policy interventions
-
-Supplementary Visualizations (Not Included in the Published Article):
-
-	•	Additional visual summaries of policy effects over time
-	•	Detailed epidemic and economic indicators
-	•	Extended sensitivity and exploratory analysis beyond the main scope of the paper
-
 Features
 
 	•	Age-specific SEIR dynamics via individual-based simulation (includes custom “Coderona-virus” model)
@@ -246,20 +206,83 @@ Features
 	•	Daily economic index computed using model-specific parameters and health states
 	•	Adjustable compliance rates and age-specific immunity
 
-**Example Visualizations from Article**
+**Colab Notebooks and Statistical Analysis**
 
-A dedicated folder `examples/` contains:
+This repository includes four Google Colab notebooks used to generate the complete set of statistical analyses and visualizations referenced in the article:
 
-	•	Two CSV data files:
+	•	Statistical1_Analysis_SiRL_Coderona-2.ipynb
  
-	•	bene-baraq_metrics_output.csv
+	•	Statistical2_Analysis_SiRL_Coderona.ipynb
  
-	•	holon_metrics_output.csv
+	•	Statistic_evaluation_RL.ipynb
  
-These contain preprocessed simulation metrics for the cities of Bene Beraq and Holon, used in visualizations.
-
-	•	One Google Colab notebook:
 	•	Analysis_and_Visualization_Holon_Bene_Beraq.ipynb
+ 
+
+These notebooks contain:
+
+	•	Reproduction of all figures included in the published article
+	•	Descriptive and inferential statistical evaluations of simulation outcomes
+	•	Performance comparisons between demographic settings and policy interventions
+
+Supplementary Visualizations (Not Included in the Published Article):
+
+	•	Additional visual summaries of policy effects over time
+	•	Detailed epidemic and economic indicators
+	•	Extended sensitivity and exploratory analysis beyond the main scope of the paper
+
+You can open each notebook directly in Google Colab by clicking on the “Open in Colab” badge next to its name.
+
+**Data Files**
+
+`Data Files (CSV)`
+
+All data files required to run the notebooks are provided within the repository:
+
+	•	data_inputs/
+ 
+	•	experiment1_results_UP.csv: Contains simulation results used in Experiment 1.
+ 
+	•	experiment2_results_UP.csv: Contains simulation results used in Experiment 2.
+ 
+	•	examples/examples/
+ 
+	•	bene-baraq_metrics_output.csv: Simulation metrics output data specifically related to the city of Bene Beraq.
+ 
+	•	holon_metrics_output.csv: Simulation metrics output data specifically related to the city of Holon.
+ 
+
+`How to Load Data in Colab`
+
+When running these notebooks in Colab, please clone the repository first by running the following command in the notebook’s first cell:
+
+!git clone https://github.com/yossi122/Master_SiRL_Coderona.git
+
+Then you can load the data directly from the cloned directory like this:
+
+import pandas as pd
+
+# Example for loading experiment data
+df_experiment1 = pd.read_csv('Master_SiRL_Coderona/data_inputs/experiment1_results_UP.csv')
+
+# Example for loading city-specific data
+df_bene_baraq = pd.read_csv('Master_SiRL_Coderona/examples/examples/bene-baraq_metrics_output.csv')
+
+## Notebooks — Run in Colab
+
+Note: All relevant data files required by the notebooks are included in this repository, under the data_inputs/ and examples/examples/ directories. When running in Colab, you can access these files directly after cloning the repository, or by using the correct relative paths in the code cells.
+
+- **Statistical1_Analysis_SiRL_Coderona_2.ipynb** – Main statistical analysis  
+  [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yossi122/Master_SiRL_Coderona/blob/main/Statistical1_Analysis_SiRL_Coderona_2.ipynb)
+
+- **Statistical2_Analysis_SiRL_Coderona.ipynb** – Model comparison analysis  
+  [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yossi122/Master_SiRL_Coderona/blob/main/Statistical2_Analysis_SiRL_Coderona.ipynb)
+
+- **Statistic_evaluation_RL.ipynb** – RL agent performance evaluation  
+  [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yossi122/Master_SiRL_Coderona/blob/main/Statistic_evaluation_RL.ipynb)
+
+- **Analysis_and_Visualization_Holon_Bene_Beraq.ipynb** – Data analysis: Holon and Bene Beraq  
+  [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yossi122/Master_SiRL_Coderona/blob/main/examples/examples/Analysis_and_Visualization_Holon_Bene_Beraq.ipynb)
 
 
 **Training Environment**
