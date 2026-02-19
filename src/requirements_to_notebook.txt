@@ -105,7 +105,7 @@ gmpy2 @ file:///work/ci_py311/gmpy2_1676839849213/work
 google-pasta==0.2.0
 greenlet @ file:///croot/greenlet_1702059959679/work
 grpcio==1.62.1
-h11==0.14.0
+h11==0.16.0
 h5py==3.11.0
 HeapDict @ file:///Users/ktietz/demo/mc3/conda-bld/heapdict_1630598515714/work
 holoviews @ file:///croot/holoviews_1707836454244/work
